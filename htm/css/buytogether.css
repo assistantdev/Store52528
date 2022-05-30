@@ -1,0 +1,52 @@
+/* Buy Together  Mar/2016 (v1) */
+#bTContainer hr{border-top:1px solid #cccccc !important;display:block;width:100% !important;height:1px !important;clear:both;}
+#bTContainer{min-height:1px;margin:0 auto;max-width:1306px;height:440px;}
+#bTEconomyItemConj{display:none;}
+.bTItem{min-height:250px;float:left;margin:0px 5px;padding:0 10px 0 10px;text-align:center;position:relative; }
+.bTItem:after{content:" ";background:url("/images/plus.svg?cccfc=1") no-repeat;background-size:100%;width:15px;height:15px;position:absolute;}
+.bTItensContainer > div:last-of-type:after{background:none;content:"";}
+.bTTotalsPrices{position:relative;padding:10px;}
+.bTTotalBuy{float:left;}
+.bTTotalBuy:before{content:" ";background:url("/images/equal.svg?cccfc=1") no-repeat;background-size:100%;width:15px;height:15px;position:absolute;}
+.bTProdSelectName {width: 100%;clear: both;padding: 5px 0;font-size: 14px;text-transform: uppercase;}
+.bTText{float:left;width:100%;clear:both;display:block;margin:35px 0 5px 0;font-size:18px;font-weight:600;color: #212121;text-transform: uppercase;}
+.bTAddProd{position:absolute;left:4px;top:4px;z-index:99;font-size:0.8em;}
+.EqualSeparator{float:left;font-weight:bold;display:block;width:18px;margin:75px 0 0 0;}
+.EqualSeparator svg{width:100%;}
+.bTImgProd {width:100%;padding:15px 0px 0px 0px;height:165px;}
+.bTImgProd img {max-width:132px;max-height:132px;border:1px solid #cecece;margin-bottom:10px;margin-top:10px;padding:5px;background:#fff;}
+#bTDescrProdConj li{list-style:none;margin:2px 0;}
+.bTProdName {font-size: 14px;display: block;overflow: hidden;width: 200px;height: 40px;min-height: 40px;text-align: center;margin: 0 auto 5px auto;}
+.bTIntProd{min-height:60px !important;}
+.bTPriceProd{text-align:center;height:60px !important;color:#212121;font-size:14px;}
+.FCfnShowEconomyConj{color:#00a28e;text-align:center;font-size:12px;font-weight:bold;display:block;margin:10px 0;padding:7px 3px;}
+#PricesCJ h3 {color:#212121;font-size:16px;font-weight:700;text-transform:uppercase;}
+.bTProdPrice{margin:10px 0 10px 0;}
+.bTPricePorCont{display:block;margin:10px 0;}
+.bTPricePor,.bTOriPrice{font-weight:bold;font-size:1.2rem;color:#212121;}
+.bTEconomy{display:block;color:#00a28e;}
+.bTPriceOff{font-size:14px;}
+#BotComprarCJ{margin:15px 0 0 0;}
+div.details-buy-together-add-to-cart{background:#00a28e;color:#fff;font-size:1.3rem;font-weight:700;max-width:150px;height:auto;position:relative;text-align:center;cursor:pointer;margin:5px 0;padding:5px 0px;border-radius:5px;float:left;text-align:center;min-width:150px;}
+
+@media only screen and (max-width:1024px){
+  .bTText {margin:35px 0 5px 0;}
+  .bTItem{width:100%;clear:both;min-height:200px;padding:0;}
+  .bTTotalsPrices{min-height:280px;float:none;margin:0 auto;display:table !important;}
+  .bTImgProd{padding:0;height:155px;}
+  .bTImgProd img{max-width:120px;max-height:120px;}
+  .bTPriceProd {height:70px !important;}
+  #bTContainer{height: auto;}
+  .bTProdSelectName {position:relative;top:-10px;}
+  .bTItem:after{right:50%;bottom:10px;}
+  .bTTotalBuy:before {left:-30px;top:120px;}
+}
+
+@media only screen and (min-width:1025px){
+  .bTItem {width:20%;min-height:0px;height: 250px;}
+  .bTTotalsPrices{min-height:250px;float:left;margin:0px 5px;}
+  .bTTotalBuy{float:left;width:100%;}
+  .EqualSeparator{float:left;display:block;}
+  .bTItem:after {right:-15px;top:95px;}
+  .bTTotalBuy:before {left:-30px;top:95px;}
+}
