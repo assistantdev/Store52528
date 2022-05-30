@@ -1,0 +1,70 @@
+/* Dark Mode */
+body.dark-theme {background:#323336;color:#ababab;}
+.dark-theme .CartDesign-header, .dark-theme footer, .dark-theme .footer-accordion-panel {background:#000;}
+.dark-theme .header-mainbar-container, .dark-theme .HeaderMainbar, .dark-theme .swiper-slide, .dark-theme .DivHomeProd, .dark-theme .DivHomeProd:hover, .dark-theme .DivListProd, .dark-theme .DivListProd:hover, .dark-theme #header-mainbar-container-search-result, .dark-theme .header-mainbar-flex-search .InputTextBusca {background:#323336;}
+.dark-theme #CartDesign, .dark-theme .EstTabFinalCart, .dark-theme #CartDesign .ProdCartCont a {background:#424242;}
+.dark-theme .Titulos, .dark-theme .MainHomeBoxTitFC h1,.dark-theme .MainHomeBoxTitFC h2,.dark-theme .MainHomeBoxTitFC h3, .dark-theme .header-mainbar-container-account a, .dark-theme .HeaderMenuULFC li a, .dark-theme .DivHomeNomeProd .HomeNomeProd, .dark-theme .DivProductListNomeProd .ProductListNomeProd, .dark-theme h1#idNameProductGridFC, .dark-theme #idBreadcrumb ul li a, .dark-theme .icon-share-wishlist-off-det-product-text, .dark-theme .det-product-recommend a span, .dark-theme .DivHomePriceProd .prices .old-price, .dark-theme .DivProductListPriceProd .prices .old-price, .dark-theme .prices .home-price, .dark-theme .prices .installments, .dark-theme .home-info-banners a, .dark-theme .footer-newsletter-tit, .dark-theme .footer-newsletter-text, .dark-theme #idTitPageHistory h3, .dark-theme a .EstNamePageHistory, .dark-theme .EstPricePageHistory, .dark-theme .footer-mainbar-menu-one h4, .dark-theme .footer-mainbar-menu-two h4, .dark-theme .footer-mainbar-menu-three h4, .dark-theme .footer-mainbar-menu-four h4, .dark-theme ul.footer-menu a, .dark-theme .FooterTecBoxFC b, .dark-theme .FooterCompanyBoxFC b, .dark-theme .FooterTecBoxFC a, .dark-theme .FooterCompanyBoxFC a, .dark-theme .footer-support, .dark-theme .footer-support b, .dark-theme .footer-support a, .dark-theme .dark-mode-checkbox-container label, .dark-theme .header-mainbar-aux-cont, .dark-theme .header-mainbar-aux1 a, .dark-theme .header-mainbar-aux2 a, .dark-theme .header-mainbar-aux3 a, .dark-theme .footer-payment-container h4, .dark-theme .footer-security-container h4, .dark-theme .EstParc, .dark-theme #idTitProdCrossFC, .dark-theme .bTText, .dark-theme #PricesCJ h3, .dark-theme .bTPricePor, .dark-theme .bTOriPrice, .dark-theme .bTPriceProd, .dark-theme .EstNameProdCross a, .dark-theme .EstPriceProdCross, .dark-theme .det-product-img-name-container-two-new .prod-price, .dark-theme .CartDesign-product-info-name a, .dark-theme #CartDesign .ProdCartCont a, .dark-theme .CartDesign-product-info-desc, .dark-theme .CartDesign-product-info-price, .dark-theme .CartDesign-totalcart-container, .dark-theme #ContentFil .DivFiltrarPor .Label, .dark-theme #idTxtIntroFoundProdsFC, .dark-theme .FCCartRecalculate button#FCCartRecalculateBut, .dark-theme .FCCartStillShopping button#FCCartStillShoppingBut, .dark-theme .FCSubTitMyAcc, .dark-theme .FCSubTit2MyAcc, .dark-theme .FCHelloMyAcc {color:#ababab;}
+.dark-theme .HeaderCartItensPosition .HeaderCartNumberProds {border:1px solid #87939C;}
+.dark-theme .DivHomeProd,.dark-theme .DivListProd, .dark-theme #idProdCrossFC ul li {border:1px solid #808080;}
+.dark-theme .header-mainbar-aux {background-color:#000;border-bottom: 1px solid #808080;}
+.dark-theme .footer-mainbar-newsletter-field, .dark-theme .footer-history, .dark-theme .det-product-buytogether-container {background:#323336;border-top: 1px solid #808080;}
+.dark-theme .FooterMainBarFC, .dark-theme .FooterMainBarFC-container {border-top: 1px solid #808080;}
+.dark-theme .HeaderMainbar {border-bottom: 1px solid #808080;}
+.dark-theme .det-product-img-name-container-two-new {background:#2c2d30;}
+.dark-theme input#det-product-tab1:checked + label#det-product-tab1-label, .dark-theme input#det-product-tab2:checked + label#det-product-tab2-label, .dark-theme input#det-product-tab3:checked + label#det-product-tab3-label {color:#fff;border-bottom: 5px solid #707e89;background:#212121;}
+.dark-theme .header-mainbar-flex-search input[type="text"] {color:#f0f0f0;}
+.dark-theme .header-mainbar-flex-search .InputTextBusca::placeholder {color:#f0f0f0;opacity:1;}
+.dark-theme .header-mainbar-flex-search .InputTextBusca:-ms-input-placeholder {color:#f0f0f0;}
+.dark-theme .header-mainbar-flex-search .InputTextBusca::-ms-input-placeholder {color:#f0f0f0;}
+.dark-theme #idProdCrossFC{background:transparent}
+.dark-theme #idProdCrossFC ul li{border:0px solid #cecece;}
+.dark-theme .EstImageProdCross{background:transparent}
+.dark-theme .EstImageProdCross img{border:0px solid #cecece;}
+.dark-theme .filter-sidenav{background:#323336;}
+.dark-theme .button-ShowMore, .dark-theme .button-ShowLess{color:#f0f0f0;margin:16px 0 0 0px!important;}
+.dark-theme .button-ShowMore::before, .dark-theme .button-ShowLess:before{height:14px;width:14px;padding-right:2px;padding-left:4px;margin-right:5px;}
+.dark-theme .button-ShowMore::before{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='9' %3E%3Cpath fill='%23f0f0f0' d='M6.875 3.522H5.356L3.511 5.368 1.666 3.522H.146l3.365 3.365z'/%3E%3C/svg%3E");padding-right:3px;width:7px;height:9px}
+.dark-theme .button-ShowLess::before{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='9' %3E%3Cpath fill='%23f0f0f0' d='M.147 5.887h1.519l1.845-1.846 1.845 1.846h1.519L3.511 2.522z'/%3E%3C/svg%3E");padding-right:3px;width:7px;height:9px}
+
+
+@media(prefers-color-scheme:dark){
+  /* Reset Cor Original */
+  body {background:#323336;color:#ababab;}
+  .header-mainbar-container, .HeaderMainbar, .swiper-slide, .DivHomeProd, .DivHomeProd:hover, .DivListProd, .DivListProd:hover, #CartDesign, .EstTabFinalCart, #CartDesign .ProdCartCont a, #header-mainbar-container-search-result, .header-mainbar-flex-search .InputTextBusca {background:#323336;}
+  .Titulos, .MainHomeBoxTitFC h1,.MainHomeBoxTitFC h2,.MainHomeBoxTitFC h3,.DivHomeNomeProd .HomeNomeProd,h1#idNameProductGridFC, .DivHomePriceProd .prices .old-price, .DivProductListPriceProd .prices .old-price, .prices .home-price,.footer-newsletter-tit, .footer-newsletter-text,#idTitPageHistory h3,.footer-mainbar-menu-one h4,.footer-mainbar-menu-two h4,.footer-mainbar-menu-three h4,.footer-mainbar-menu-four h4, .FooterTecBoxFC b,.FooterCompanyBoxFC b,.header-mainbar-aux-cont,.header-mainbar-aux1 a,.header-mainbar-aux2 a,.header-mainbar-aux3 a, .footer-payment-container h4, .footer-security-container h4, .EstParc, #idTitProdCrossFC, .bTText, #PricesCJ h3, .bTPricePor, .bTOriPrice, .bTPriceProd, .EstPriceProdCross, .det-product-img-name-container-two-new .prod-price {color:#ababab;}
+  .prices .installments, .home-info-banners a, .EstPricePageHistory, .footer-support b, .footer-support a, #CartDesign .ProdCartCont a, .CartDesign-totalcart-container, #ContentFil .DivFiltrarPor .Label, .FCCartRecalculate button#FCCartRecalculateBut, .FCCartStillShopping button#FCCartStillShoppingBut, .FCSubTitMyAcc, .FCSubTit2MyAcc, .FCHelloMyAcc {color:#ababab;}
+  .header-mainbar-container-account a, .HeaderMenuULFC li a, .DivProductListNomeProd .ProductListNomeProd, #idBreadcrumb ul li a, a .EstNamePageHistory, ul.footer-menu a, .FooterTecBoxFC a, .FooterCompanyBoxFC a, .footer-support, .dark-mode-checkbox-container label, .EstNameProdCross a, .CartDesign-product-info-name a, .CartDesign-product-info-desc, .CartDesign-product-info-price, #idTxtIntroFoundProdsFC {color:#ababab;}
+  .HeaderCartItensPosition .HeaderCartNumberProds {border:1px solid #ababab;}
+  .DivHomeProd, .DivListProd, #idProdCrossFC ul li {border:1px solid #E0E0E0;}
+  .footer-mainbar-newsletter-field {background:#f3f3f3;border-top:1px solid #e3e3e3;}
+  .CartDesign-header{background:#424242;}
+  footer, .footer-accordion-panel, .det-product-buytogether-container {background:#323336;}
+  .icon-share-wishlist-off-det-product-text, .det-product-recommend a span {color:#66747e;}
+  .header-mainbar-aux {background-color:#f8f8f8;border-bottom:1px solid #e3e3e3;}
+  .footer-history {background:#323336;border-top:1px solid #e3e3e3;}
+  .FooterMainBarFC, .FooterMainBarFC-container {border-top:1px solid #e3e3e3;}
+  .HeaderMainbar {border-bottom:1px solid #e3e3e3;}
+  .det-product-img-name-container-two-new {background:#f8f8f8;}
+  .dark-mode-checkbox-container{display:none!important;}
+  input#det-product-tab1:checked + label#det-product-tab1-label, input#det-product-tab2:checked + label#det-product-tab2-label, input#det-product-tab3:checked + label#det-product-tab3-label {color: #fff;border-bottom: 5px solid #707e89;background: #212121;}
+  .header-mainbar-flex-search input[type="text"] {color:#ababab;}
+  .header-mainbar-flex-search .InputTextBusca::placeholder {color:#ababab;opacity:1;}
+  .header-mainbar-flex-search .InputTextBusca:-ms-input-placeholder {color:#ababab;}
+  .header-mainbar-flex-search .InputTextBusca::-ms-input-placeholder {color:#ababab;}
+  .header-mainbar-aux {background-color:#000;border-bottom: 1px solid #808080;}
+  .header-mainbar-aux2 a, .header-mainbar-aux3 a {color:#ababab;text-decoration:none;}
+  .det-product-img-name-container-two-new {background: #2c2d30;}
+  .footer-mainbar-newsletter-field, .footer-history, .det-product-buytogether-container{background:#323336;border-top: 1px solid #808080;}
+  .EstImageProdCross img{border:1px solid transparent;}
+  #idProdCrossFC ul li{border:1px solid transparent;}
+  .filter-sidenav{background:#323336;}
+  .ProductList #idTxtIntroFoundProdsFC{color:#ababab}
+  .button-ShowMore,.button-ShowLess{color:#f0f0f0;margin:16px 0 0 0px!important;}
+  .button-ShowMore::before,.button-ShowLess:before{height:14px;width:14px;padding-right:2px;padding-left:4px;margin-right:5px;}
+  .button-ShowMore::before{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='9' %3E%3Cpath fill='%23f0f0f0' d='M6.875 3.522H5.356L3.511 5.368 1.666 3.522H.146l3.365 3.365z'/%3E%3C/svg%3E");padding-right:3px;width:7px;height:9px}
+  .button-ShowLess::before{content:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='9' %3E%3Cpath fill='%23f0f0f0' d='M.147 5.887h1.519l1.845-1.846 1.845 1.846h1.519L3.511 2.522z'/%3E%3C/svg%3E");padding-right:3px;width:7px;height:9px}
+
+}
+.dark-mode-checkbox-container{display:flex;align-items:center;margin-top:6px;}
+.dark-mode-checkbox-container label{font-size:14px;}
+#dark-mode{width:16px;height:16px;margin:0 5px 0 0;}
