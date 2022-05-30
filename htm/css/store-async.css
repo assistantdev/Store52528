@@ -1,0 +1,24 @@
+/* Store 2 Async - 2018 (v3) */
+
+/* Colors */
+#idListProdCrossFC li .EstCatProdCross .EstCatNameProdCross{color:<tag-FCCSSSecondMainColor>}
+.mixitup-control-active{background:<tag-FCCSSSecondMainColor>;color:#fff;}
+.CatSeeMoreFC{background:<tag-FCCSSSecondMainColor>}
+.zFPromoNotFound{background:<tag-FCCSSMainColor>}
+#ContentFil .FilSearch .FilName{color:<tag-FCCSSMainColor>;border-bottom:2px solid <tag-FCCSSMainColor>;}
+.HeaderCartItensPosition .HeaderCartNumberProds{background-color:<tag-FCCSSMainColor>}
+.ProductDet #idCommentsClickFC a{background:<tag-FCCSSMainColor>}
+.ProductDet #idEstNoCommentsClickProdOpFC a {background:<tag-FCCSSMainColor>}
+#idTxtRemoveFilters a{background-color:<tag-FCCSSMainColor>;border:0 solid <tag-FCCSSMainColor>}
+.FCError404h1{color:<tag-FCCSSSecondMainColor>}
+.horizontalMenuArea{background:<tag-FCCSSMainColor>}
+.dropbtn a:hover{color:<tag-FCCSSSecondMainColor>;}
+.dropdown-content a:hover:nth-child(odd){background:<tag-FCCSSMainColor>;}
+.dropdown-content a:hover:nth-child(even){background:<tag-FCCSSMainColor>;}
+.header-sidenav{background-color:<tag-FCCSSMainColor>;}
+h1.MainHomeBoxTitFC-line:before,h1.MainHomeBoxTitFC-line:after,h2.MainHomeBoxTitFC-line:before,h2.MainHomeBoxTitFC-line:after,h3.MainHomeBoxTitFC-line:before,h3.MainHomeBoxTitFC-line:after {background-color:<tag-FCCSSMainColor>;}
+.home-container-three-banners-child-text {color:<tag-FCCSSMainColor>;border:2px solid <tag-FCCSSMainColor>;}
+.home-info-banners-icon {background:<tag-FCCSSMainColor>;}
+.footer-newsletter-submit-button{background:<tag-FCCSSMainColor>;}
+.CartDesign-categories-dropdown{color:<tag-FCCSSMainColor>;border-bottom: 2px solid <tag-FCCSSMainColor>;}
+.prod-list-progress-bar>div{background-color:<tag-FCCSSSecondMainColor>}
