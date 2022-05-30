@@ -1,0 +1,340 @@
+<head>
+<title>Live Store</title>
+<metadescription>Live Store</metadescription>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5">
+</head>
+
+<script src='<PathTo file="htm/ls/live-store-smartmodal.js">'></script>
+<script src='<PathTo file="htm/ls/live-store-list-smartmodal.js">'></script>
+<script src='<PathTo file="htm/ls/live-store-search-smartmodal.js">'></script>
+
+<style>
+.HeaderMainbar,.header-space-top,#FC-ShowHomeBanners,.footer-history,.FooterMainBarFC,.FooterMainBarFC-container,#idBadgeAllFC,.left-bar{display:none!important;}
+.container-video {position: relative;text-align: center;color: white;}
+.container iframe{}
+.DivHomeDetails{cursor:pointer;}
+.vex.vex-theme-default{overflow-y:hidden!important;}
+
+body,html{min-height:100%;}
+*,:after,:before{box-sizing:border-box;}
+html{-ms-overflow-style:scrollbar;}
+.live-store-height{height:100%!important;}
+.live-store-background{width:1433px;height:100vh;overflow:hidden;position:relative;}
+.live-store-background div,.live-store-background iframe{position:absolute;width:100%;height:100%;}
+.live-store-drag-and-scroll{cursor:-webkit-grab;cursor:grab;}
+.live-store-overflow-hidden{overflow:hidden!important;}
+
+/*smartmodal*/
+.LivestorePage .sModalArea{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9;transform:translateX(-100%);transition-duration:0.3s;}
+.LivestorePage .sModalContainer{position:fixed;top:0;left:0;background:#fff;width:310px;height:100%;z-index:11;}
+.LivestorePage iframe#idIframe{height:99%;}
+.LivestorePage .FCCloseBack{text-align:left;background:#fff;margin-bottom:10px;position:fixed;top:15px;right:15px;z-index:2;border-radius:20px;padding:5px;-webkit-box-shadow:1px 2px 8px -2px rgba(0,0,0,0.75);-moz-box-shadow:1px 2px 8px -2px rgba(0,0,0,0.75);box-shadow:1px 2px 8px -2px rgba(0,0,0,0.75);cursor:pointer;}
+.LivestorePage .FCCloseBack img{margin:5px 5px 1px 5px;background:#fff;width:16px;}
+.LivestorePage .bgsModal{position:fixed;top:0;left:0;background:transparent!important;width:100%;height:100%;z-index:10;opacity:0.8;}
+
+.live-store-container-fullscreen-video{position:absolute;background:rgba(0,0,0,0);}
+.live-store-header{width:100%;position:relative;top:0px;padding:10px;}
+.live-store-header-container{padding:10px 0;display:flex;}
+.live-store-header-logo{text-align:center;height:10%;}
+.live-store-header-logo img{width:150px!Important;background:#fff;border-radius:4px;padding:5px}
+.live-store-header-logo{text-align:center;height:10%;width:100%;}
+.live-store-header-cart{display:flex;justify-content:space-between;align-items:center;}
+#live-store-header-cart{display:none}
+
+.live-store-main {width:100%;position:relative;bottom:0px;top:25px;text-align:center;}
+.live-store-main-container{margin:10px;}
+
+.live-store-footer {width:100%;position:absolute;bottom:0px;}
+.live-store-footer-container{margin:10px;display:flex;}
+.live-store-footer-container-block-1{width:70%;}
+.live-store-footer-container-block-2{width:30%;display:flex;justify-content:space-between}
+.live-store-footer-container-block-2-chat{}
+
+.live-store-submit{display:flex;align-items:center;justify-content:center;margin-top:200px;}
+.live-store-submit a{border:2px solid #fff;color:#000;background:#fff;padding:15px 10px;border-radius:4px;cursor:pointer;}
+.live-store-show-info{}
+.live-store-product-one{position:absolute;left:0;}
+
+.live-store-footer-logo{}
+#live-store-show-info{display:none;}
+#live-store-footer{display:none;}
+footer{display:none}
+
+.live-store-categorie-icon{position:relative;top:-20px;margin-top:18px;}
+.ProdCartPagto a{padding: 10px 45px;}
+#CartDesign #idZipC{height:33px;}
+
+.live-store-background iframe{position:absolute;top:-60px;left:0;width:100%;height:calc(100% + 120px);}
+
+@media screen and (min-width:1025px){
+  .FCHome .middle-container{max-width:100%!important;text-align:center;margin:0 auto}
+  .live-store-background iframe{top:-160px;}
+  .live-store-submit{margin-top:260px;}
+  .live-store-submit a{padding:25px 10px;}
+  .live-store-footer-container-block-1{width:90%;}
+  .live-store-footer-container-block-2{width:10%;}
+  body{overflow:hidden;}
+}
+
+@media screen and (max-width:1024px) {
+  .live-store-background iframe{top:-175px;height:150%;}
+  .live-store-drag-and-scroll{overflow:auto !important;}
+  .live-store-header-cart{width:30%!important;display:flex;justify-content:space-between;}
+  .home-spy-details-container .DivHomeSpy, .home-spy-details-container .DivHomeDetails{position:relative;top:-5px;left:12px!important;}
+}
+
+@media only screen and (max-width:768px){
+  .LivestorePage .sModalContainer{top:0;left:0;width:310px;height:100%;-webkit-overflow-scrolling:touch;overflow-y:scroll;}
+  .LivestorePage div#bTContainer{width:98%;}
+  .LivestorePage .FCCloseBack {top:15px;right:15px;}
+}
+
+@media only screen and (min-width:1026px) and (max-width:1366px){
+  .live-store-background iframe{top:-193px;height:150%;}
+  #live-store-screen-size{width:1366px;height:768px;}
+  .live-store-submit{margin-top:200px;}
+}
+
+@media only screen and (min-width:1367px){
+  #live-store-screen-size{width:1920px;height:1080px;}
+}
+
+</style>
+
+<div class="live-store-overflow-hidden live-store-drag-and-scroll live-store-height live-store-container-fullscreen-video" style="height:100vh;width:100vw;overflow:auto;">
+  <div class="live-store-background" id="live-store-screen-size" style="overflow:auto hidden;">
+     <div class="live-store-background" id="player"></div>
+  </div>
+</div>
+
+<div class="live-store-container-elements">
+    <div class="live-store-header">
+      <div class="live-store-header-container">
+        <div class="live-store-header-logo" id="live-store-header-logo"><a href="<StoreDomain>" target="_blank"><img alt="<storeName>" title="<storeName>" src="<store-logo>" class="HeaderLogo"></a></div>
+
+        <div class="live-store-header-cart" id="live-store-header-cart">
+          <div class="live-store-header-cart-block-1">
+            <a href="<StoreDomain>" target="_blank"><img alt="Home" src="<PathTo file="images/ls/icon-live-store-home.svg">" width="48" height="48"></a>
+          </div>
+          <div class="live-store-header-cart-block-2">
+            <a onclick="Cart$.fnShowCartCheckout();" style="cursor:pointer;">
+              <img width="48" height="48" src="<PathTo file="images/ls/icon-live-store-cart.svg">" id="header-cat-cart" alt="Cart">
+              <div class="HeaderCartItensPosition"><span id="idCartItemsTop" class="HeaderCartNumberProds"></span></div>
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="live-store-main">
+      <div class="live-store-main-container">
+       <div class="live-store-submit" id="live-store-submit"><a onclick="liveStorePlayVideo();"><var key="live-store-live-seller"></var><br><strong><var key="live-store-click-here"></var></strong> <var key="live-store-to-enter"></var></a></div>
+       <div class="live-store-show-info" id="live-store-show-info">
+         <div class="live-store-product-one">
+            <div class="DivHomeProd1 live-store-categorie-icon">
+              <div class="home-spy-details-container">
+                <a class="DivHomeDetails" target="_parent" onclick="fcSpyLVCat$.openlistSmartModal('/prod,offers,1,offers.htm');"><img src="<PathTo file="images/ls/icon-live-store-discount.svg">" alt="discount" loading="lazy" width="48" height="48"></a>
+              </div>
+            </div>
+            <div class="DivHomeProd1 live-store-categorie-icon">
+              <div class="home-spy-details-container">
+                <a class="DivHomeDetails" target="_parent" onclick="fcSpyLVCat$.openlistSmartModal('/prod,releases,1,releases.htm');"><img src="<PathTo file="images/ls/icon-live-store-release.svg">" alt="release" loading="lazy" width="48" height="48"></a>
+              </div>
+            </div>
+
+            <!--<div class="DivHomeProd1 live-store-categorie-icon">
+              <div class="home-spy-details-container">
+                <a class="DivHomeDetails" target="_parent" onclick="fcSpyLVCat$.openlistSmartModal('/');"><img src="<PathTo file="images/ls/icon-live-store-product.svg">" loading="lazy" width="48" height="48"></a>
+              </div>
+            </div>-->
+
+         </div>
+         
+       </div>
+      </div>
+    </div>
+    <div class="live-store-footer" id="live-store-footer">
+      <div class="live-store-footer-container">
+           <div class="live-store-footer-container-block-1">
+             <a onclick='bCascate=true;FCLib$.OpenRWD("/page,arq,live-store-help,int,1","Disp","width=700,height=700")' style="cursor:pointer"><img alt="Help" src="<PathTo file="images/ls/icon-live-store-help.svg">" width="48" height="48"></a>
+             <a onclick="fcSpyLVSearch$.openlistSmartModal('/advanced-search.ehc');" style="cursor:pointer"><img alt="Search" src="<PathTo file="images/ls/icon-live-store-search.svg">" width="48" height="48"></a>
+           </div>
+           <div class="live-store-footer-container-block-2">
+             <div class="live-store-footer-container-block-2-chat"><div id="tawkbutton"></div></div>
+             <div class="live-store-footer-container-block-2-sound"><a onclick="liveStoreMuteVideo();" style="cursor:pointer"><img alt="Enable and Disable Audio" src="<PathTo file="images/ls/icon-live-store-sound-on.svg">" loading="lazy" width="48" height="48"></a></div>
+           </div>
+      </div>
+    </div>
+</div>
+
+<script>
+/* URL Parameters */
+function getUrlParamVideo() {
+    var emptyObject = {};
+    var getURL = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        emptyObject[key] = value;
+    });
+    return emptyObject;
+}
+
+var defaulVideoLiveStore = sF$.fnGetConfig('Show_Video_Live_Store');
+var getParamURL = getUrlParamVideo()["cod"];
+var showDefaultOrParamVideo = getParamURL == null || getParamURL == "" ? defaulVideoLiveStore : getParamURL;
+
+/* Position Scroll - mobile */ 
+function liveStoreMediaQuerieScrollbar(mediaQuerieScrollBar) {
+  var positionMobileScrollBar = document.querySelector('.live-store-drag-and-scroll');
+  if (mediaQuerieScrollBar.matches) {            
+    positionMobileScrollBar.scrollLeft = 750;
+    positionMobileScrollBar.scrollTop = 180; 
+  } else { 
+    positionMobileScrollBar.scrollLeft = 0;
+    positionMobileScrollBar.scrollTop = 0;
+  }
+};    
+var mediaQuerieScrollBar = window.matchMedia("(max-width:1024px)");
+liveStoreMediaQuerieScrollbar(mediaQuerieScrollBar);
+mediaQuerieScrollBar.addListener(liveStoreMediaQuerieScrollbar);
+
+/* Choose Twitch or Youtube */
+if(sF$.fnGetConfig('Choose_Video_Player_Live_Store') == "Twitch"){
+  /* Twitch API */
+  FCLib$.fnLoadScript("https://player.twitch.tv/js/embed/v1.js",false);
+  var player;
+
+}else{
+  /* Youtube API */
+  var tag = document.createElement('script');  
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      videoId: showDefaultOrParamVideo,
+      playerVars: { playsinline: 1, rel: 0, showinfo: 0, fs: 0, modestbranding: 1,height: '360',width: '640', },
+      events: {'onReady': onPlayerReady,'onStateChange': onPlayerStateChange}
+    });
+  }
+  function onPlayerReady(event) {
+    event.target.stopVideo();
+  }
+  var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      done = true;
+    }
+  }
+  function stopVideo() {
+    player.stopVideo();
+  }
+}
+
+/* Play Video */
+function liveStorePlayVideo() {
+  if(sF$.fnGetConfig('Choose_Video_Player_Live_Store')=="Twitch"){ /* Twitch */
+    var options={"channel":showDefaultOrParamVideo,"autoplay":true};
+    player=new Twitch.Player("player",options);
+    player.play();
+  }
+  else player.playVideo(); /* Youtube */
+
+  var btnLiveStoreSubmit = document.getElementById('live-store-submit');
+
+  var infoLiveStoreContainer = document.getElementById('live-store-show-info');
+  infoLiveStoreContainer.style.display = 'none';
+
+  var footerLiveStoreContainer = document.getElementById('live-store-footer');
+  footerLiveStoreContainer.style.display = 'none';
+
+  var headerCartLiveStoreContainer = document.getElementById('live-store-header-cart');
+  headerCartLiveStoreContainer.style.display = 'none';
+
+  var headerLogoLiveStoreContainer = document.getElementById('live-store-header-logo');
+
+  if (btnLiveStoreSubmit.style.display === 'none') {
+    btnLiveStoreSubmit.style.display = 'block';
+
+  } else {
+    btnLiveStoreSubmit.style.display = 'none';
+    infoLiveStoreContainer.style.display = 'block';
+    footerLiveStoreContainer.style.display = 'block';
+    headerCartLiveStoreContainer.style.display = 'flex';
+    headerCartLiveStoreContainer.style.justifyContent = 'space-between'; 
+
+    function liveStoreMediaQuerie(mediaQuerie) {
+      if (mediaQuerie.matches) {    
+        headerLogoLiveStoreContainer.style.width = '70%';
+        headerCartLiveStoreContainer.style.width = '30%';   
+      } else {
+        headerLogoLiveStoreContainer.style.width = '90%';
+        headerCartLiveStoreContainer.style.width = '10%';   
+      }
+    }    
+    var mediaQuerie = window.matchMedia("(max-width:1024px)");
+    liveStoreMediaQuerie(mediaQuerie);
+    mediaQuerie.addListener(liveStoreMediaQuerie);
+
+  }
+    return false;
+}
+
+/* Sound On and Off */
+function liveStoreMuteVideo(){
+  var toogleSoundOnOff = 0;
+  var iconSound = document.querySelector('.live-store-footer-container-block-2-sound');
+  
+  iconSound.addEventListener('click', function(){
+    if (toogleSoundOnOff == 0) {
+      this.innerHTML = '<img alt="햡dio desligado" title="햡dio" src="'+ FC$.PathImg +'/ls/icon-live-store-sound-off.svg" loading="lazy" width="48" height="48" style="cursor:pointer">'; 
+      if(sF$.fnGetConfig('Choose_Video_Player_Live_Store') == "Twitch"){
+        /* Twitch */
+        player.setVolume(0);
+      }else{
+        /* Youtube */
+        player.mute();
+      }      
+      toogleSoundOnOff = 1;
+    } else {
+      this.innerHTML = '<img alt="햡dio desligado" title="햡dio" src="'+ FC$.PathImg +'/ls/icon-live-store-sound-on.svg" loading="lazy" width="48" height="48" style="cursor:pointer">'; 
+      if(sF$.fnGetConfig('Choose_Video_Player_Live_Store') == "Twitch"){
+        /* Twitch */
+        player.setVolume(1);
+      }else{
+        /* Youtube */
+        player.unMute();
+      }
+      toogleSoundOnOff = 0;
+    }
+  });
+
+  return false;
+}
+
+/* Chat Tawk */
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/5c2df02f7a79fc1bddf31b31/default';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+})();
+
+Tawk_API = Tawk_API || {};
+Tawk_API.onStatusChange = function (status){
+  if(status === 'online')
+  {
+    document.getElementById('tawkbutton').innerHTML = '<a href="javascript:void(Tawk_API.toggle())"><img alt="Converse no Chat" title="Chat" src="<PathTo file="images/ls/icon-live-store-chat.svg">" loading="lazy" width="48" height="48" style="cursor:pointer"></a>';
+  }
+  else if(status === 'away')
+  {
+    document.getElementById('tawkbutton').innerHTML = '<a href="javascript:void(Tawk_API.toggle())"><img alt="Converse no Chat" title="Chat" src="<PathTo file="images/ls/icon-live-store-chat.svg">" loading="lazy" width="48" height="48" style="cursor:pointer"></a>';
+  }
+  else if(status === 'offline')
+  {
+    document.getElementById('tawkbutton').innerHTML = '<a href="javascript:void(Tawk_API.toggle())"><img alt="Converse no Chat" title="Chat" src="<PathTo file="images/ls/icon-live-store-chat.svg">" loading="lazy" width="48" height="48" style="cursor:pointer"></a>';
+  }
+};
+</script>
