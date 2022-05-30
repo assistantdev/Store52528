@@ -1,0 +1,71 @@
+<!-- buytogether.htm : v1 2018  (Store 2) -->
+<script src='<PathTo file="htm/js/buytogether-min.js">'></script>
+<link rel="stylesheet" href="<storePath>htm/css/buytogether.css">
+<script>
+bT$.setVarProds({id:<prodId>,qt:1,qty:0<prodStock>,Adicional1:"<desc1Val>",Adicional2:"<desc2Val>",Adicional3:"<desc3Val>",AdicionalD1:"<descD1Val>",AdicionalD2:"<descD2Val>",AdicionalD3:"<descD3Val>",Cor:"<colorVal>",PrecoNum:<prodPriceNum>,PrecoOri:<prodPriceOri>});
+</script>
+
+<div id="bTContainer" data-bTModel="1" class="bT-separator">
+  <p class="bTText">
+    <buyTogetherTxt>
+  </p>
+  <div class="bTItem bTActualItem" id="bTItem<prodId>">
+    <div class="bTImgProd"><img src="<prodImgMain>" onerror="MostraImgOnError(this,FC$.Language);" alt="<prodName>" loading="lazy"></div>
+    <div class="bTProdName">
+      <prodName>
+    </div>
+    <div class="bTIntProd">
+      <div class="bTPriceProd">
+        <div id="bTidProdPrice<prodId>">
+          <prodPrice>
+          <span id="bTEconomyItemConj">
+            <script>bT$.fnShowEconomyConj("<prodPriceNum>","<prodPriceOri>");</script>
+            <prodDescriptorD1T><prodDescriptorD2T><prodDescriptorD3T><prodColorT>
+            <prodDescriptor1T><prodDescriptor2T><prodDescriptor3T>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div id="bTProdSelect<prodId>" class="bTProdSelectName" style="display:none;">
+      <input type="checkbox" id="CB<prodId>" checked onchange="bT$.fnRemoveItemCJ(<prodId>,this)">
+      <label for="CB<prodId>"><var key="details-buy-together-checkbox"></var></label>
+    </div>
+  </div>
+  <div class="bTItensContainer">
+    <prod>
+      <div class="bTItem" id="bTItem<prodIdT>">
+        <div class="bTImgProd"><prodImgT></div>
+        <div class="bTProdName">
+	  <prodNameT>
+        </div> 		
+        <div class="bTIntProd">
+          <div class="bTPriceProd">
+            <div id="bTidProdPrice<prodId>">
+	      <prodPriceT>
+	      <span id="bTEconomyItemConj">
+                <prodDescriptorD1T><br><prodDescriptorD2T><br><prodDescriptorD3T><br><prodColorT><br><prodDescriptor1T><br><prodDescriptor2T><br><prodDescriptor3T>
+              </span>
+	    </div>
+	  </div>
+        </div>
+        <div id="bTProdSelect<prodIdT>" class="bTProdSelectName">
+          <input type="checkbox" id="CB<prodIdT>" checked onchange="bT$.fnRemoveItemCJ(<prodIdT>,this)">
+          <label for="CB<prodIdT>"><var key="details-buy-together-checkbox"></var></label>
+        </div> 
+      </div> <script>bT$.setVarProds({id:<prodIdT>,qt:1,qty:0<prodStockT>,Adicional1:"<prodDescriptor1T>",Adicional2:"<prodDescriptor2T>",Adicional3:"<prodDescriptor3T>",AdicionalD1:"<prodDescriptorD1T>",AdicionalD2:"<prodDescriptorD2T>",AdicionalD3:"<prodDescriptorD3T>",Cor:"<prodColorT>",PrecoNum:<prodPriceNumT>,PrecoOri:<prodPriceOriT>});</script>
+    </prod>
+  </div>
+  <div class="bTTotalsPrices">
+    <div class="bTTotalBuy">
+      <div id="idProdPriceConj"></div>
+      <div id="PricesCJ">
+        <h3><var key="details-buy-together-title"></var>:</h3>
+        <div class='bTProdPrice' id='idProdPrice'></div>
+      </div>
+      <div id="BotComprarCJ">
+        <a style="cursor:pointer" onclick="bT$.fnComprar(this)"><div class="details-buy-together-add-to-cart"><var key="details-buy-together-add-to-cart-button"></var></div></a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>bT$.fnShowPrices();</script>
