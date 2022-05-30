@@ -1,0 +1,27 @@
+/* Estilos personalizados */
+.EstPassoCompraDiv{display:none;color:<tag-FCCSSMainColor>}
+.EstContinuarComprando{display:none}
+#TabBancos{display:none}
+.SecurityLogos b{font-weight:bold;margin:0 0 0 -80px}
+.header-ped-line{margin-bottom:0px}
+.checkout-header-logo{display:flex;display:-webkit-flex;align-items:center;-webkit-align-items:center;justify-content:center;-webkit-justify-content:center;background:#fcfcfc;margin:0 auto;padding:10px 0;}
+img.HeaderLogo{max-width:200px;max-height:60px;}
+
+/* Footer */
+.FCCheckout .pwdEye{position:relative;top:12px}
+#idTableSenhaFC .pwdEye{position:relative;top:11px;display:block}
+.checkout-footerCompanyBoxFC{width:100%;background:#f8f8f8;padding:15px 0;display:flex;display:-webkit-flex;align-items:center;-webkit-align-items:center;justify-content:center;-webkit-justify-content:center;flex-direction:column;-webkit-flex-direction:column;font-size:0.75rem;line-height:normal;}
+.checkout-footerCompanyBoxFC p{font-size:0.8rem}
+.checkout-footerCompanyBoxFC div p{margin-top:10px;font-size:0.75rem}
+html,body{height:100%;margin:0}
+.FCCheckout{display:table;height:100%;width:100%}
+.FCCheckout .ped-global-fixed{display:table-row;height:1px}
+.FCCheckout .ped-global-fixed.ped-global-expand{height:100%}
+
+@media only screen and (max-width:1024px){
+  img.HeaderLogo{max-width:150px;max-height:45px;}
+}
+
+@media only screen and (min-width:1921px){
+  body{max-width:1920px!important;margin:0 auto;}
+}
