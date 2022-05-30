@@ -1,0 +1,133 @@
+<script src='<PathTo file="htm/js/smartmodal-min.js">'></script>
+<!-- Home -->
+
+<!-- Template for product quantity in cart -->
+<textarea id=cartQuantityTemplate style=display:none>
+  <div id="dynCartAdd<prodId>" class="dynCartAdd hidethis" onclick="dynCart$.changeQty(<prodId>,1)"><dynCartAdd></div>
+  <div id="dynCartQtyPanel<prodId>" class="dynCartQtyPanel hidethis">
+    <svg class=dynCartQtyDel viewBox="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,false)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-10v-2h10v2z"/></svg>
+    <input type=number id="dynCartQty<prodId>" prodid="<prodId>" value="<cartprodqty>" oriValue="<cartprodqty>" maxlength=2 oninput="this.value=this.value.replace(/[^\d+]/,'').substring(0,3)" onkeyup="delayExec(function(){dynCart$.inputQty(<prodId>);},1000)">
+    <svg class=dynCartQtyAdd viewBox="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,true)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-4v4h-2v-4h-4v-2h4v-4h2v4h4v2z"/></svg>
+  </div>
+  <div id="dynCartDone<prodId>" class="dynCartDone hidethis"><div class="skeleton-item"><a onclick="Cart$.fnShowCartCheckout();"><dynCartDone></a></div></div>
+</textarea>
+
+<!-- Box1 Banner + Product Carousel -->
+<div class="home-main-container"  id="home-sales-section">
+  <div class="MainHomeBoxTitFC">
+    <h1 class="MainHomeBoxTitFC-line"><var key="home-title-sales"></var></h1>
+  </div> 
+  <div class="home-main-cont1">
+    <div class="home-main-banner1">
+      <a href="<banner-redir 12>" target="_self">
+        <img src="<banner-image 12>" alt="<banner-alt 12>" loading="lazy">
+        <div class="home-main-btn1"><div class="home-container-three-banners-child-text"><var key="product-list-buy"></var></div></div>  
+      </a>
+    </div>
+    <div class="home-main-carrossel1">
+      <div class="carousel2 carousel-1 js-flickity" data-flickity-options='{ "pageDots": false, "wrapAround": true, "autoPlay": false, "cellAlign": "left", "resize": true }'>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-sales"><prod out="p255" em="prom,rand"></div></div>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-sales"><prod out="p255" em="prom,rand"></div></div>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-sales"><prod out="p255" em="prom,rand"></div></div>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-sales"><prod out="p255" em="prom,rand"></div></div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<!-- Box2 Banner + Product Carousel -->
+<div class="home-main-container"  id="home-release-section">
+  <div class="MainHomeBoxTitFC">
+    <h2 class="MainHomeBoxTitFC-line"><var key="home-title-last-releases"></var></h2>
+  </div> 
+  <div class="home-main-cont1">
+    <div class="home-main-carrossel1">
+      <div class="carousel2 carousel-2 js-flickity" data-flickity-options='{ "pageDots": false, "wrapAround": true, "autoPlay": false, "cellAlign": "left", "resize": true   }'>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-releases"><prod out="p255" em="new,rand"></div></div>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-releases"><prod out="p255" em="new,rand"></div></div>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-releases"><prod out="p255" em="new,rand"></div></div>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-releases"><prod out="p255" em="new,rand"></div></div> 
+      </div>
+    </div>
+    <div class="home-main-banner1">  
+      <a href="<banner-redir 13>" target="_self">
+        <img src="<banner-image 13>" alt="<banner-alt 13>" loading="lazy">
+        <div class="home-main-btn1"><div class="home-container-three-banners-child-text"><var key="product-list-buy"></var></div></div>
+      </a>
+    </div>
+  </div>  
+</div>
+
+<!-- Box3 Banner + Product Carousel -->
+<div class="home-main-container"  id="home-featured-section">
+  <div class="MainHomeBoxTitFC">
+    <h2 class="MainHomeBoxTitFC-line"><var key="home-title-featured-products"></var></h2>
+  </div> 
+  <div class="home-main-cont1">
+    <div class="home-main-banner1">
+      <a href="<banner-redir 14>" target="_self">
+        <img src="<banner-image 14>" alt="<banner-alt 14>" loading="lazy">
+	<div class="home-main-btn1"><div class="home-container-three-banners-child-text"><var key="product-list-buy"></var></div></div>
+      </a>
+    </div>
+    <div class="home-main-carrossel1">
+      <div class="carousel2 carousel-3 js-flickity" data-flickity-options='{"pageDots":false,"wrapAround":true,"autoPlay":false,"cellAlign":"left","resize":true}'>
+        <div class="carousel-cell2"><div class="home-container-products-child home-container-products-featured"><prod out="p255" em="high,rand"></div></div>
+    	<div class="carousel-cell2"><div class="home-container-products-child home-container-products-featured"><prod out="p255" em="high,rand"></div></div>
+    	<div class="carousel-cell2"><div class="home-container-products-child home-container-products-featured"><prod out="p255" em="high,rand"></div></div>
+    	<div class="carousel-cell2"><div class="home-container-products-child home-container-products-featured"><prod out="p255" em="high,rand"></div></div> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="home-main-banner-middle">
+  <a href="<banner-redir 15>">
+    <picture>          
+      <source media="(max-width:1024px)" srcset="<banner-image-mobile 15>">
+      <img alt="<banner-alt 15>" src="<banner-image 15>" loading="lazy">          
+    </picture>
+  </a>
+</div>
+
+<div class="home-info-banners">
+  <a href="/help.ehc#Pagamento">
+    <div class="home-info-banners-bl">
+    <div class="home-info-banners-icon"><img src="<PathTo file="images/icon-banner-payment.svg">" loading="lazy" alt="Payment"></div>
+      <div class="home-info-banners-txt"><var key="home-section-payment"></var></div>
+    </div>
+    </a>
+    <a href="/help.ehc#Seguranca">
+    <div class="home-info-banners-bl">
+      <div class="home-info-banners-icon"><img src="<PathTo file="images/icon-banner-security.svg">" loading="lazy" alt="Security"></div>
+        <div class="home-info-banners-txt"><var key="home-section-security"></var></div>
+    </div>
+    </a>
+    <a href="/help.ehc#Entregas">
+    <div class="home-info-banners-bl">
+      <div class="home-info-banners-icon"><img src="<PathTo file="images/icon-banner-delivery.svg">" loading="lazy" alt="Delivery"></div>
+        <div class="home-info-banners-txt"><var key="home-section-delivery"></var></div>
+    </div>
+    </a>
+    <a href="/contact.ehc">
+    <div class="home-info-banners-bl">
+      <div class="home-info-banners-icon"><img src="<PathTo file="images/icon-banner-contact.svg">" loading="lazy" alt="Contact"></div>
+        <div class="home-info-banners-txt"><var key="home-section-contact-us"></var></div>
+    </div>
+    </a>
+</div>
+
+<!-- Banners Slideshow -->
+<textarea id="FC-HideHomeBanners" style="display:none;">
+  <div class="carouselBanner js-flickity" id="home-banner-flickty"></div>
+</textarea>
+<script>
+var aBannersHome=<banners-json info="1" max="6" pos="11">;
+var carousel1 = document.querySelector('.carousel-1');var flkty1 = new Flickity(carousel1);
+var carousel2 = document.querySelector('.carousel-2');var flkty2 = new Flickity(carousel2);
+var carousel3 = document.querySelector('.carousel-3');var flkty3 = new Flickity(carousel3);
+FCLib$.onLoaded(function(){
+  skeletonLib$.removeClass("loading-skeleton",document);
+  flkty1.resize();flkty2.resize();flkty3.resize();
+});
+</script>
