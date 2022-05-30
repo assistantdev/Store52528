@@ -1,0 +1,20 @@
+<div class="controls">
+  <div class="FCBtnMixit sort" data-sort="default"><var key="cat-more-popular"></var></div>
+  <div class="FCBtnMixit sort" data-sort="name:asc"><var key="cat-more-brand-a-to-z"></var></div>
+  <div class="FCBtnMixit sort" data-sort="name:desc"><var key="cat-more-brand-z-to-a"></var></div>
+  <div class="FCBtnMixit sort" data-sort="random"><var key="cat-more-random"></var></div>  
+</div>
+<div class="container">
+  <div class="categories-menu-container">
+    <ListPathCat out="13" id="-1">
+  </div>
+</div>
+<script src='<PathTo file="htm/js/mixitup.js">'></script>
+<script>
+var catBlock = document.getElementsByClassName("CatContainerFC");  
+for(var i = 0; i < catBlock.length; i++){
+  catBlock[i].classList.add("mix");    
+}
+var containerEl = document.querySelector('.container');
+var mixer = mixitup(containerEl);
+</script>
