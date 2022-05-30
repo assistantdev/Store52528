@@ -1,0 +1,30 @@
+<div class="left-bar" id="left-bar-filter">
+  <div id="ProductsFilterFC" data-include-css="false"></div>
+</div>
+
+<script>
+  /*barra filtros fixa desktop*/
+  function fixDIVsSizes(){
+    if(innerWidth>1022 && document.body.className=='FCProduct ProductList' || innerWidth>1022 && document.body.className=='FCCustom HighlightsPage'){
+      var prodsDIVSizeAjusted=getTabTitProd.offsetHeight-40;
+      var prodsDIVSizeAjustedCHighlights=getTabTitProd.offsetHeight-40;
+      getProductsFilterFC.style.minHeight=(prodsDIVSizeAjusted)+"px";
+      getContentFil.style.height=(innerHeight-60)+"px";
+      getContentFil.style.maxHeight=(prodsDIVSizeAjusted)+"px";
+    }
+  }
+  if(innerWidth>1022 && document.body.className=='FCProduct ProductList' || innerWidth>1022 && document.body.className=='FCCustom HighlightsPage'){
+    var getProductsFilterFC,getContentFil,getTabTitProd;
+    FCLib$.onLoaded(function(){
+      getTabTitProd=document.getElementById("TabTitProd");
+      if(FC$.Page=='Custom')getProductsFilterFC=document.getElementById("ProductsFilterFC_Hotsite");
+      else getProductsFilterFC=document.getElementById("ProductsFilterFC");
+      getContentFil=document.getElementById("ContentFil");
+      if(getProductsFilterFC && getContentFil){
+        fixDIVsSizes();
+        window.addEventListener('resize',fixDIVsSizes,true);
+        window.addEventListener('scroll',fixDIVsSizes,true);
+      }
+    });
+  }
+</script>
