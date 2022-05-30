@@ -1,0 +1,412 @@
+<!-- estiloproduto.htm : Grid v2 2019  (Store 2) -->
+<ProdTop>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com/" crossorigin>
+<script src="/js/vex/v4.0.1/vex.combined.min.js?cccfc=1"></script>
+<StoreInterests>
+<script src='<PathTo file="htm/js/resource-<StoreLanguage>.js">'></script>
+<script src='<PathTo file="htm/js/config.js">'></script>
+<script src='<PathTo file="htm/js/store-lib.js">'></script>
+<script src='<PathTo file="htm/ls/live-store-smartmodal.js">'></script>
+<script src='<PathTo file="htm/ls/store-lib-live.js">'></script>
+
+<!-- SPY2 - End -->
+<link href="<PathTo file="htm/css/fc_grid_v1.css">" rel="stylesheet" type="text/css">
+<script src="<PathTo file="htm/js/fc_grid_v1.js">"></script>
+<script>var IsFramePage=false;</script>
+
+<!-- Script Filters -->
+<script>
+iQtdProds=<QtProd>;
+FCLib$.onReady(function(){
+  if(iQtdProds=="1"){
+    var sPages=sF$.fnGetID("idPageCountFC");
+    if(sPages)sPages.style.display="none";
+  }
+});
+OffsetAutoPagFC=290;
+var bTemSub=false;
+</script>
+
+<style>
+.ProductList{margin-top:70px!important;}
+.HeaderMainbar,.left-bar,.FooterMainBarFC,#idMobileFilters,.footer-history,#bTContainer,.FooterMainBarFC-container{display:none!important;}
+.live-store-buy-button{background:#01bb01;border-radius:5px;color:#fff;padding:5px 15px;}
+.prodlist-spy-details-container{text-align:center;margin:0px auto;}
+.prodlist-spy-details-container .DivProdListSpy, .prodlist-spy-details-container .DivProdListDetails {position: relative;top: -5px;left:0px!important;}
+.DivListProd{width: 32%!important;}
+</style>
+
+<div id="filter-offcanvas-overlay" onclick="filterCloseNav();"></div>
+<div id="filterSidenav" class="filter-sidenav font-regular">
+  <div class="closebtn" onclick="filterCloseNav();"><img alt="Close" id="list-filters-close" src="<PathTo file="images/icon-menu-close-filter.svg">" width=35 height=35></div>
+  <div id="ProductsFilterFCMobile" data-include-css="false"></div>
+</div>
+
+<div id="idMobileFilters">
+  <div class="fc-mobile-filters-left" id="fc-mobile-dynamic-filter">
+    <div onclick="filterOpenNav();"><b><var key="list-filters-title"></var></b></div>
+  </div>
+  <div class="fc-mobile-filters-right">
+    <div id="idPagProdTop"></div>
+  </div>
+</div>
+
+<div class='FCCloseBack' onclick='window.top.fcProductSpy$.removeLastSmartModal();'><img src='<PathTo file="images/ls/icon-live-store-smclose.svg">' alt='Back'></div>
+</ProdTop>
+
+<ProdList>
+<!-- Prod List -->
+<div class="prodBox">
+  <FormProd>
+    <div class="DivListProd" <DataAttribute> id="DivProd<prodId>">
+      <div class="DivProductListProd">
+        <div class="DivProductListImagemProd" id="DivImagemProdDouble<prodId>" ></div>
+        <div class="DivProductListNomeProd" id="DivProductListNomeProd<prodId>" >
+          <span class="ProductListNomeProd text-overflow font-regular"><prodNameEnc></span>
+        </div>
+        <div class="DivProductListPriceProd" id="DivProductListPriceProd<prodId>" style="white-space:nowrap;">
+          <div id="idProdPrice<prodId>"></div> 
+          <div class="PriceAVistaLista" id="ProdDesc<prodId>"></div>
+        </div>
+        <div class="prodlist-spy-details-container">
+          <a href="#" class="DivProdListDetails live-store-buy-button" onclick="window.top.fcProductSpy$.openSmartModal('<URLProd>');"><var key="live-store-buy"></var></a>
+        </div>
+      </div>
+      <div id="zFProdSoldOut<prodId>"></div>
+      <script>IDProdutoPai=<prodId>;var iEstoqueSubs=0;var bTemSubs=false;</script>
+      <sub>
+        <script>iEstoqueSubs=iEstoqueSubs+0<prodStock>;bTemSubs=true;</script>
+      </sub>
+    </div>
+  </FormProd>
+  <script>
+  sFLiveStore$.fnProd("<prodImgMain>","<prodImgDet>","<URLProd>",<prodId>,"<prodNameFU>",<prodPriceNum>,<prodPriceOri>,"<prodRef>",<prodMaxInstallmentNum>,<prodStock>);
+  </script>
+</div>
+</ProdList>
+
+<ProdDet>
+<script>
+  var chkURLTop=((location.pathname).indexOf('prod,sty,4,int,1,')>-1),
+      bFromSpy=(document.referrer.indexOf("sty,4")>-1 || document.referrer.indexOf("sty=4")>-1),
+      urlToShow;
+  if(!chkURLTop){
+    urlToShow=location.pathname+location.search;
+    if(urlToShow.indexOf(',sty,4,int,1')>-1)urlToShow=urlToShow.replace(',sty,4,int,1','');
+    if(urlToShow.indexOf('&sty=4&int=1')>-1)urlToShow=urlToShow.replace('&sty=4&int=1','');
+    if(urlToShow.indexOf('?sty=4&int=1')>-1)urlToShow=urlToShow.replace('?sty=4&int=1','');
+  } else {
+    urlToShow=(location.pathname).replace('prod,sty,4,int,1,','prod,');
+  }
+  if(bFromSpy)window.top.history.replaceState("object or string", "Title", urlToShow);
+  else window.top.history.pushState("object or string", "Title", urlToShow);
+  var swipperArea = document.querySelector('.ProductDet');
+  fcProductSpy$.swipedetect(swipperArea, function(swipedir){
+      if(swipedir=='right')window.top.fcSpy$.removeLastSmartModal();
+  });
+  if(!bFromSpy)FCLib$.AddEvent(window.top,"popstate",function(){
+       setTimeout(function(){ window.top.fcSpy$.removeLastSmartModal(); }, 1);
+  });
+  /*native share mobile*/
+  window.top.document.title='<prodNameEnc>';
+  window.top.document.querySelector("link[rel='canonical']").setAttribute('href', location.protocol + '//' + location.host + '<URLPROD>');
+</script>
+
+<style>
+.FCProdSty5{padding-top:20px;}
+.det-product-img-name-container-two{top:0;}
+.det-product-container{margin-top:0px;}
+.FCBtnComprarGrid div {margin: -20px 0px 0px 5px;}
+#idListProdCrossFC li{cursor:pointer;}
+.ProductDet .BotLancamento{background:#ef3336;}
+.ProductDet #idEstNoCommentsClickProdOpFC a {background:#1e1f20;}
+@media only screen and (max-width: 1024px){
+  #idButtonBuyFC_1 {padding: 6px 0px;}
+  .det-product-reviews{margin-bottom:80px;}
+  .ProductDet #idEstNoCommentsClickProdOpFC a{font-size:0.8rem;}
+  .ProductDet #idCommentsClickFC a{background:#FF625F;border-radius:3px;padding:5px 10px 5px 10px;color:#fff;line-height:30px;}
+  .ProductDet .FreightContainerFC{margin:25px 0 150px 0;}
+  .ProductStyleBoxDescriptionFC{margin-bottom:10px;}
+}
+</style>
+
+<!-- Prod Det -->
+<link rel="stylesheet" type="text/css" href="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.css" />
+<script type="text/javascript" src="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.js"></script>
+
+<div class='FCCloseBack' onclick='window.top.fcProductSpy$.removeLastSmartModal();'><img src='<PathTo file="images/ls/icon-live-store-smclose.svg">' alt='Back'></div>
+
+<div class="det-product-container">
+  <div id="idBreadcrumb" class="font-regular">
+    <ul>
+      <li><a href="<url-categories>" class="ProductStyleBreadCrumblinkFC"><var key="details-departments-title"></var></a></li>
+      <li><PathCat></li>
+    </ul>
+  </div>
+
+  <br>
+  <div class="det-product-img-name-container-new">
+    <div class="det-product-img-name-container-full-new">
+      <div class="det-product-img-name-container-one zoom-gallery image-zoom-size1" id="idDivGridImg"></div>
+    </div>
+
+    <div class="det-product-img-name-container-two-new">
+      <div class="det-product-release"><prodRelease></div>
+      <div><h1 id="idNameProductGridFC"><prodNameEnc></h1></div>
+      <div class="DivProductDet-sku">
+        SKU: <small id="idCodProdGrid"><prodRef></small>
+        <div class="det-product-show-product-review-icons"></div>
+        <script type="text/javascript">
+          /* SPY2 - Start */
+          document.onkeyup=function(e){
+            e=e||window.event;
+           if(e.keyCode==27)window.parent.fcProductSpy$.removeLastSmartModal();
+          };
+          /* SPY2 - End */
+          iQtdOp=<prodReviewsQty>.0;
+          var showQtdReviewStars = document.querySelectorAll(".det-product-show-product-review-icons");
+          for (i = 0; i < showQtdReviewStars.length; i++) {
+            if(iQtdOp==0){showQtdReviewStars[i].innerHTML = "<a href='<url-product-review><prodId>' aria-label='review'><div class='ProductStyleReviewOffBoxFC'><div class='NotaOpiniaoVazio NotaOpiniaoVazio1'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio2'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio3'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio4'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio5'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio6'></div></div></a>";}
+            else{showQtdReviewStars[i].innerHTML = "<a href='<url-product-review><prodId>' aria-label='review'><div class='ProductStyleReviewOnBoxFC'><div class='ProductStyleReviewStarsOnFC'><prodAverageReviews></div></a><div class='ProductStyleReviewQtyOnFC'>(<a href='#OP' style='text-decoration:none;'><prodReviewsQty></a>)</div></div>";}
+          } 
+        </script>
+      </div>
+      <div class="det-product-filters"><ProdFilters></div>
+      <!-- Stock -->
+      <div class="product-details-show-stock-container">
+        <div id="product-details-show-stock"></div>
+          <script type="text/javascript">
+          FCLib$.onReady(function(){
+            var sStockProduct=<prodStock>.0;
+            fnGetStockProduct(sStockProduct);});
+          </script>
+      </div>
+      <!-- Date prom -->
+      <div class="product-details-data-prom">
+        <div id="DataProm"></div>
+        <script type="text/javascript">
+        var sDateTime="<DataPromFim>";
+        FCLib$.onReady(function(){fnShowDateProm(sDateTime);});
+        </script>
+      </div>
+      <div>
+        <p class="prod-price" id="idPriceGridFC<prodId>">
+          <prodPriceSimple>
+        </p>
+        <script>
+          FCLib$.onReady(function(){
+            var e=document.getElementById("idPriceGridFC<prodId>");
+            if(e)e.innerHTML += fnMaxInstallmentsGrid(<prodPriceNum>,<prodMaxInstallmentNum>) + fnShowEconomyGrid(<prodPriceNum>,<prodPriceOri>);
+          });
+        </script>
+      </div>
+      <p id="idPriceAVista">
+        <script>FCLib$.onReady(function(){sFLiveStore$.fnMostraDescontoProdDet(<prodPriceNum>);});</script>
+      </p>
+      <div class="FCGridMain" id="idMainGridFC_<prodId>"></div>
+      <div class="FreightContainerFC" id="det-zipcode-container">
+        <div id="ShowCEP<prodId>"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="det-product-description-container-full">
+<div class="det-product-description-container">
+  <input id="det-product-tab1" type="radio" name="tabs" checked>
+  <label id="det-product-tab1-label" for="det-product-tab1" class="font-bold"><h2><var key="details-description-title"></var></h2></label>
+  <input id="det-product-tab2" type="radio" name="tabs">
+  <label id="det-product-tab2-label" for="det-product-tab2" class="font-bold"><div class="details-reviews-tab-quantity"><h2><var key="details-reviews-title"></var></h2><span>(<prodReviewsQty>)</span></div></label>
+  <div id="det-product-description-tab" class="font-regular">
+    <div class="ProductStyleBoxDescriptionFC">
+      <prodDescription>
+    </div>
+    <div class="ProductStyleBoxDescriptionFC">
+       <DescrHTM>
+    </div>
+    <div class="ProductStyleBoxDescriptionFC">
+       <DescrURL>
+    </div>
+    <div class="ProductStyleBoxDescriptionFC">
+       <BarCode>
+    </div>
+  </div>
+  <div id="det-product-review-tab">
+    <div class="det-product-reviews">
+      <Comments>
+      <script>
+      /* comments on a top window */
+        function changeTargetLinksOnFCSpy(ElementWithLinksToChange){
+          var getCSlinks=Array.prototype.slice.call(document.querySelectorAll(ElementWithLinksToChange+' a'));
+          getCSlinks.forEach(function(item){
+            item.setAttribute('target','_parent');
+          });
+        };
+        changeTargetLinksOnFCSpy('#idEstNoCommentsClickProdOpFC');
+        changeTargetLinksOnFCSpy('.det-product-show-product-review-icons');
+        changeTargetLinksOnFCSpy('#idBreadcrumb');
+        changeTargetLinksOnFCSpy('.fc-grid-add-to-cart-button');
+        changeTargetLinksOnFCSpy('#cartBtnImg_1');
+        changeTargetLinksOnFCSpy('#idButtonBuyFC_1');
+        changeTargetLinksOnFCSpy('.DivProdListDetails');
+      /* comments on a top window */
+      </script>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="det-product-fixed-remove" id="det-product-fixed-remove"></div>
+
+<script>
+  function buttonLocation(){
+    var btcomprar = document.getElementById('idButtonBuyFC_1');
+    var getFrameFromInside = window.top.document.getElementById('idIframe');
+    if(btcomprar && getFrameFromInside){
+      btcomprar.className+=' movedButton';
+      (getFrameFromInside.parentNode.parentNode).appendChild(btcomprar);
+    }
+  }
+  function iOSversion() {
+    if (/iP(hone|od|ad)/.test(navigator.userAgent)) {
+      var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+      return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+    }
+  }
+
+if(window.innerWidth<=1023 && sFLiveStore$.fniOSversion() && sFLiveStore$.fniOSversion()[0]<13){
+ setTimeout(function(){ buttonLocation(); }, 200);
+ document.getElementsByTagName('HEAD')[0].innerHTML+='\n<style>'
+ + '.mz-expand .mz-image-stage > figure:before, .mz-expand .mz-image-stage:before {'
+ + ' height: 20% !important;'
+ + '}'
+ + '.mz-expand-thumbnails {'
+ + ' top: 17% !important;'
+ + ' bottom: auto !important;'
+ + '}'
+ + '</style>';
+}
+</script>
+
+<!-- Javascript ZipCode - Description CrossSelling -->
+<script>
+FCLib$.onReady(function(){
+  sF$.fnCustomizeIconsSocialNetworks(true);
+  fnShowCEP(<prodId>);
+  fnShowCEPGrid(<prodId>); /*FC simulação de frete */
+  changeTargetLinksOnFCSpy('.det-product-recommend');
+  changeTargetLinksOnFCSpy('#BotComprarCJ');
+});
+FCGrid$.showVideoGrid("<CodVideoProd>");
+</script>
+
+<script>
+var GridLib_<prodId>$=(function(){
+  var oProdTags={
+    ImagemProdDet:("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"),
+    ImagemProdAmp:("<prodImgAmp>"==""?("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"):"<prodImgAmp>"),
+    CorVal:"<colorVal>",
+    CorRGB:"<colorRGB>",
+    IDProduto:<prodId>,
+    CodProd:"<prodRef>",
+    Estoque:(""=="<prodStock>"?99999999:0<prodStock>),
+    PesoNum:"<weightNum>",
+    PrecoOri:"<prodPriceOri>",
+    PrecoNum:"<prodPriceNum>",
+    MaxParcelasProdNum:<prodMaxInstallmentNum>,
+    Adicional1Val:"<desc1Val>",
+    Adicional2Val:"<desc2Val>",
+    Adicional3Val:"<desc3Val>",
+    AdicionalD1Val:"<descD1Val>",
+    AdicionalD2Val:"<descD2Val>",
+    AdicionalD3Val:"<descD3Val>",
+    NomeAdicional1:"<descName1>",
+    NomeAdicional2:"<descName2>",
+    NomeAdicional3:"<descName3>",
+    NomeAdicionalD1:"<descD1Name>",
+    NomeAdicionalD2:"<descD2Name>",
+    NomeAdicionalD3:"<descD3Name>"
+  };
+
+  var aSubProdTags=[];
+  <sub>
+    aSubProdTags.push({
+      ImagemProdDet:("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"),
+      ImagemProdAmp:("<prodImgAmp>"==""?("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"):"<prodImgAmp>"),
+      CorVal:"<colorVal>",
+      CorRGB:"<colorRGB>",
+      IDProduto:<prodId>,
+      CodProd:"<prodRef>",
+      Estoque:(""=="<prodStock>"?99999999:0<prodStock>),
+      PesoNum:"<weightNum>",
+      PrecoOri:"<prodPriceOri>",
+      PrecoNum:"<prodPriceNum>",
+      MaxParcelasProdNum:<prodMaxInstallmentNum>,
+      Adicional1Val:"<desc1Val>",
+      Adicional2Val:"<desc2Val>",
+      Adicional3Val:"<desc3Val>",
+      AdicionalD1Val:"<descD1Val>",
+      AdicionalD2Val:"<descD2Val>",
+      AdicionalD3Val:"<descD3Val>"
+    });
+  </sub>
+  if(aSubProdTags.length==0)FCGrid$.fnGridAll(oProdTags,aSubProdTags);
+  else FCLib$.onReady(function(){FCGrid$.fnGridAll(oProdTags,aSubProdTags);}); 
+})();
+</script>
+<!-- End: JS scripts grid -->
+
+<script>
+/*esconder botões fechar spy, whatsapp e comprar flutuante no zoom da imagem*/
+var getShowImg,getWhatsAppBt,getCloseSpyBt,getShowImgCloseBt,getShowImgBG,getMovedButton;
+  function hideButtonShowImg(){
+    setTimeout(function(){
+      var checkZoomStage=document.querySelector('.mz-image-stage');
+      getMovedButton=window.top.document.querySelector('.movedButton');
+      if(checkZoomStage){
+        if(getWhatsAppBt)getWhatsAppBt.style="display:none;";
+        if(getCloseSpyBt)getCloseSpyBt.style="display:none;";
+        if(getMovedButton)getMovedButton.style="display:none;";
+        setTimeout(function(){
+          getShowImgCloseBt=document.querySelector('.mz-button-close');
+          if(getShowImgCloseBt)getShowImgCloseBt.setAttribute('ontouchend','showButtonShowImgClose(500);');
+          if(getShowImgCloseBt)getShowImgCloseBt.setAttribute('onclick','showButtonShowImgClose(500);');
+          getShowImgBG=document.querySelector('.mz-expand');
+          if(getShowImgBG)getShowImgBG.setAttribute('ontouchend','showButtonShowImgClose(800);');
+          if(getShowImgBG)getShowImgBG.setAttribute('onclick','showButtonShowImgClose(800);');
+        }, 500);
+      }
+    }, 500);
+  }
+  function showButtonShowImgClose(timer){
+    var checkZoomStage;
+    setTimeout(function(){
+      checkZoomStage=document.querySelector('.mz-image-stage');
+      if(!checkZoomStage){
+      if(getWhatsAppBt)getWhatsAppBt.style="display:block;";
+      if(getCloseSpyBt)getCloseSpyBt.style="display:block;";
+      if(getMovedButton)getMovedButton.removeAttribute('style');
+      }
+    }, timer);
+  }
+FCLib$.onReady(function(){
+  getShowImg=document.getElementById('zoom2');
+  getWhatsAppBt=window.top.document.querySelector('.whatsapp_plug_icon');
+  getCloseSpyBt=window.top.document.querySelector('.FCCloseBack');
+  if(getShowImg)getShowImg.setAttribute('ontouchstart','hideButtonShowImg();');
+  if(getShowImg)getShowImg.setAttribute('onmouseup','hideButtonShowImg();');
+});
+/* FIM - esconder botões fechar spy e whatsapp no zoom da imagem*/
+</script>
+
+</ProdDet>
+
+<ProdAmp><!-- Prod Amp --></ProdAmp>
+<ProdBottom>
+<script>FCLib$.onReady(function(){FCLib$.useLangResource(oResources);});</script>
+</ProdBottom>
+<!-- estiloproduto.htm : Grid v2 2019  (Store 2) -->
