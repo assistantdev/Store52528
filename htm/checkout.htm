@@ -1,0 +1,190 @@
+<div id="StepCheckout"></div>
+<div class="FCCheckoutLogin"><Login></div>
+<div class="FCCheckoutMain">  
+  <div id="idChkCol1FC" class="FCRegisterChk">
+    <Register>
+  </div>
+  <div id="idChkCol2FC" class="FCFreightChk">
+    <span id="idChkIniCol2FC"></span>
+    <div id="idChkTagsCol2FC"><OrderCompletion><Freight><Payment></div>
+  </div>
+  <div id="idChkCol3FC" class="FCCartChk"><Cart></div>
+  <div id="idChkBottomFC"></div>
+</div>
+<div id="idChkBottomFC" class="FCChkOrderConfirmationFloat"><OrderConfirmation></div>
+<script>
+var bShowCupomCheckout=true;
+
+function FuncChkRegisterEnd(){
+  if(F$.Step==2){
+    window.onscroll=null;
+    document.getElementById('idChkTagsCol2FC').style.position='relative';
+    document.getElementById('idChkExtCartFC').style.position='relative';
+    document.getElementById('idTitCartFC').classList.add("remove-step-four");
+    if(sF$.fnGetConfig("Use_Dynamic_Cart"))localStorage.setItem("dynCart","");
+    /* No Tiny Checkout, remove fixed da primeira coluna no passo final */
+    function removeFixedDivStep2(){
+      var idChkExtRegisterFC=document.getElementById("idChkExtRegisterFC");
+      if(idChkExtRegisterFC&&idChkExtRegisterFC.style.position=="fixed")idChkExtRegisterFC.style.position="relative";
+    }
+    if(oStoreConfig$.Show_TinyCheckout[0])removeFixedDivStep2();
+    /* FIM - No Tiny Checkout, remove fixed da primeira coluna no passo final */
+  }
+  else if(F$.Step==1){
+    if(bShowCupomCheckout)fnShowCupom();
+    setTimeout(function(){SaveCart$.fnShowSaveCart();},800);
+    fnInsertMask();
+    fnShowBadgeCartCheckout();
+    /*-----Tiny Checkout-----*/
+    FCLib$.fnLoadScript(FC$.PathHtm+'js/tinycheckout.js?cccfc=2',true);
+    /*-----FIM Tiny Checkout-----*/
+  }
+  fnShowStep(F$.Step);
+}
+
+function fnShowBadgeCartCheckout(){
+  /* Discount Badges */
+  var showBadgeFree=document.querySelectorAll('[rulename*="free"] .EstTabPedido');
+  var showBadgeDiscount=document.querySelectorAll('[rulename*="discount"] .EstTabPedido');
+  var createDivElemFree=document.createElement("div");
+  createDivElemFree.className="fc-cart-discount-badge-free";
+  createDivElemFree.innerHTML=rk('cart-badge-free');
+  var createDivElemDiscount=document.createElement("div");
+  createDivElemDiscount.className="fc-cart-discount-badge-discount";
+  createDivElemDiscount.innerHTML=rk('cart-badge-discount');
+  for(var i=0;i<showBadgeFree.length;i++){showBadgeFree[i].appendChild(createDivElemFree);}
+  for(var i=0;i<showBadgeDiscount.length;i++)showBadgeDiscount[i].appendChild(createDivElemDiscount);
+}
+
+/* Begin Input masks */
+function fnInsertMask(){
+  /* Telefone */
+  if(oFCLib.PhoneCheck>0){
+    var oP2Telefone=document.getElementById('P2Telefone');
+    var oP2PTelefone=document.getElementById('P2PTelefone');
+    if(oP2Telefone || oP2PTelefone){
+      if(oFCLib.PhoneCheck==1 || oFCLib.PhoneCheck==3 || oFCLib.PhoneCheck==4){
+        var oTelefoneMask=['(99) 9999-99999','(99) 99999-9999'];
+      }else if(oFCLib.PhoneCheck==2){
+        var oTelefoneMask=['+99999999-99999','+999999999-9999'];
+      }
+      VMasker(oP2Telefone).maskPattern(oTelefoneMask[(oP2Telefone.value.replace(/\D/g, "").length==11)?1:0]);
+      oP2Telefone.addEventListener('input',inputHandler.bind(undefined,oTelefoneMask,14),false);
+      VMasker(oP2PTelefone).maskPattern(oTelefoneMask[(oP2PTelefone.value.replace(/\D/g, "").length==11)?1:0]);
+      oP2PTelefone.addEventListener('input',inputHandler.bind(undefined,oTelefoneMask,14),false);
+    }
+  }
+  /* CPF */
+  var oP2CPF=document.getElementById('P2CPF');
+  var checkDocType=document.getElementById('idCPFFC');
+  if(oP2CPF && checkDocType && checkDocType.innerText.indexOf('CPF:')!=-1){
+    VMasker(oP2CPF).maskPattern('999.999.999-99');
+  } else if(oP2CPF && checkDocType && checkDocType.innerText.indexOf('CNPJ:')!=-1){
+    VMasker(oP2CPF).maskPattern('99.999.999/9999-99');
+  }
+  /* Data nascimento */
+  var oP2DataNasc=document.getElementById('P2DataNasc');
+  if(oP2DataNasc){
+    var oDataNascMask=['99/99/9999'];
+    VMasker(oP2DataNasc).maskPattern(oDataNascMask[0]);
+    oP2DataNasc.addEventListener('input',inputHandler.bind(undefined,oDataNascMask,14),false);
+  }
+  /* ZIP Code */
+  var oP2CEP=document.getElementById('P2CEP');
+  var oP2PCEP=document.getElementById('P2PCEP');
+  if(!FC$.isEH){
+    if(oP2CEP || oP2PCEP){
+      var oP2CEPMask=['99999-999'];
+      VMasker(oP2CEP).maskPattern(oP2CEPMask[0]);
+      oP2CEP.addEventListener('input',inputHandler.bind(undefined,oP2CEPMask,14),false);
+      if(FC$.TypeFrt!=5)FCLib$.AddEvent(oP2CEP,"keyup",function(){PreencheLocalCEP(this,false,false);});
+      VMasker(oP2PCEP).maskPattern(oP2CEPMask[0]);
+      oP2PCEP.addEventListener('input',inputHandler.bind(undefined,oP2CEPMask,14),false);
+      if(FC$.TypeFrt!=5)FCLib$.AddEvent(oP2PCEP,"keyup",function(){PreencheLocalCEP(this,true,false);});
+    }
+  }
+}
+
+function inputHandler(masks, max, event) {
+	var c=event.target;
+	var v=c.value.replace(/\D/g,'');
+	var m=c.value.length>max?1:0;
+	VMasker(c).unMask();
+	VMasker(c).maskPattern(masks[m]);
+	c.value=VMasker.toPattern(v,masks[m]);
+}
+/* End Input masks */
+
+function fnShowStep(iStep){
+  var oSteps=F$.GetID("StepCheckout");
+  if(oSteps){
+    var sContStep="";
+    if(iStep==0)sContStep="<ul class='fc-checkout-steps fc-checkout-steps-arrow'><li class='fc-checkout-steps-current'><em>"+ rk("checkout-steps-identification") +"</em></a></li><li><a href='#'>"+ rk("checkout-steps-payment") +"</a></li><li><a href='#'>"+ rk("checkout-steps-confirmation") +"</a></li></ul>";
+    else if(iStep==1)sContStep="<ul class='fc-checkout-steps fc-checkout-steps-arrow'><li><a href='#'>"+ rk("checkout-steps-identification") +"</a></li><li class='fc-checkout-steps-current'><em>"+ rk("checkout-steps-payment") +"</em></li><li><a href='#'>"+ rk("checkout-steps-confirmation") +"</a></li></ul>";
+    else if(iStep==2)sContStep="<ul class='fc-checkout-steps fc-checkout-steps-arrow'><li><a href='#'>"+ rk("checkout-steps-identification") +"</a></li><li><a href='#'>"+ rk("checkout-steps-payment") +"</a></li><li class='fc-checkout-steps-current'><em>"+ rk("checkout-steps-confirmation") +"</em></li></ul>";
+    oSteps.innerHTML=sContStep;
+  }
+}
+
+function FuncChkRegisterBegin(){
+  if(F$.Step==1 && (F$.FreightValue=='' || F$.FreightValue==null)){
+    F$.GetID("idChkPaymentFC").innerHTML="<div id=idChkPaymentIntFC class=EstChkDiv><div id=idTitPaymentFC class=EstTitCheckoutFC>"+ rk("checkout-steps-payment-title") +"</div><p>"+ rk("checkout-steps-payment-text") +"</p></div>";
+  }
+  if(F$.Step==1){
+   document.getElementById('idChkBottomFC').style.position='fixed';
+   document.getElementById('idChkBottomFC').style.bottom='0px!important';
+  }
+}
+
+function FuncChkCartEnd(){
+  if(bShowCupomCheckout && F$.Step==1)fnShowCupom();
+  if(F$.Step==1){
+    setTimeout(function(){SaveCart$.fnShowSaveCart();},800);
+    fnShowBadgeCartCheckout();
+  }
+}
+
+function fnShowCupom(){
+  var oCupom=document.getElementById("idCupom");
+  var oDivCupom=document.getElementById("DivCupom");
+  if(!oCupom && !oDivCupom && F$.Step==1){
+    var oInsert=document.getElementById("idCartItemsFC");
+    if(oInsert){
+      var oNewElement=document.createElement("tr");
+      oNewElement.setAttribute("id","CupomCheckout");
+      oNewElement.innerHTML="<td colspan='2' class='EstTabPedidoTotal'><div id='DivCupom'><div class='FCCartCupomLabel-checkout'>"+ rk("checkout-enter-coupon-title") +":</div><div class='FCCartCupomInputCheckout'><input type='text' name='"+ (FCLib$.fnUseEHC()?"coupon":"cupom") +"' id='Cupom' maxlength='30' class='FCCartCupomInput'><button id='FCCartCupomButCheckout' onclick='fnCupomApply()'>"+ rk("checkout-enter-coupon-button") +"</button></div></div></td>";
+      fnInsertAfter(oNewElement,oInsert);
+    }
+  }
+}
+
+function fnCupomApply(){
+  var oCupom=document.getElementById("Cupom");
+  if(oCupom){
+    var sCupom=oCupom.value;
+    if(sCupom!=""){AjaxExecFC(FCLib$.uk("url-contact"),(FCLib$.fnUseEHC()?"coupon":"cupom")+"="+ sCupom,false,fnCallBackCupom);}
+  }
+}
+
+function fnCallBackCupom(){
+  F$.fnUpdateCart();
+  setTimeout(
+    function(){
+      var oCupom=document.getElementById("idCupom");
+      if(!oCupom){
+        var oDivCupom=document.getElementById("DivCupom");
+        if(oDivCupom){
+          var oNewElement=document.createElement("div");
+          oNewElement.setAttribute("id","MsgErrCupom");
+          oNewElement.innerHTML="<div style='color:#FF0000;padding:5px;font-size:12px;'>"+ rk("checkout-enter-invalid-coupon") +"</div>";
+          fnInsertAfter(oNewElement,oDivCupom);
+        }
+      }
+    }
+  ,500); 
+}
+
+function fnInsertAfter(newNode,referenceNode) {
+  referenceNode.parentNode.insertBefore(newNode,referenceNode.nextSibling);
+}
+</script>
