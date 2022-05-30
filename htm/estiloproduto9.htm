@@ -1,0 +1,173 @@
+<!-- estiloproduto9.htm (Fast Preview Modelo) -->
+<ProdTop>
+<base target="_parent">
+<script>
+var IsFramePage=true;
+var IsSpy=true;
+</script>
+<StoreInterests>
+<script src='<PathTo file="htm/js/resource-<StoreLanguage>.js">'></script>
+<script src='<PathTo file="htm/js/config.js">'></script>
+<script src='<PathTo file="htm/js/store-lib.js">'></script>
+<link href="<PathTo file="htm/css/fc_grid_v1.css">" rel="stylesheet" type="text/css">
+<script src="<PathTo file="htm/js/fc_grid_v1.js">"></script>
+<IncludeTagged src="htm/lojasite.css" async>
+<link rel="stylesheet" type="text/css" href="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.css" />
+<script type="text/javascript" src="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.js"></script>
+
+<script>
+var sTopLoc=top.location.href.toLowerCase();
+var bFromCart=(sTopLoc.search(FCLib$.uk("url-add-product"))>0 || sTopLoc.search(FCLib$.uk("url-add-multiple-products"))>0);
+if(bFromCart){window.onunload=function(){top.location.reload()};}
+</script>
+<style type="text/css">
+body{background:#fff}
+h1#idNameProductGridFC {margin:0 0 5px 0;font-size:22px;line-height:24px;}
+.det-product-container9{margin:15px}
+.det-product-img-name-container9{width:100%;display:flex;display:-webkit-flex;flex-flow:row wrap;-webkit-flex-flow:row wrap;justify-content:space-between;-webkit-justify-content:space-between}
+.det-product-img-name-container-one9{text-align:center;margin:0 auto}
+.det-product-img-name-container-two9{position:static;width:45%;background:#fff;left:59.5%;z-index:8;top:0;padding:0 10px}
+.det-product-img-name-container-two9 .prod-price {color:#212121;}
+.ProductDet .prod-price .FCPrice {font-size:22px;}
+.ProductDet .FCDescritorContent9{width:100%}
+.FCBoxGrid9{width:100%}
+.det-product-img-name-container-full9{width:49.5%}
+.det-product-img-name-container-one9{width:59.5%}
+.det-product-description-container9{border-top:0px solid #e5e5e5;margin:60px 0;width:53%;padding:30px}
+#det-product-tab1-label h2,#det-product-tab2-label h2{font-size:1.2rem;padding:0;margin:0}
+.ProductStyleBoxDescriptionFC9{width:92%;padding:5px 15px}
+.ProductStyleBoxDescriptionFC9 iframe{width:70%}
+#idDivGridImg .MagicZoomPlus img{max-width:450px}
+div#det-product-review-tab9{padding:20px 0 0}
+.mz-thumb-selected img{-webkit-filter:brightness(95%)!important;filter:brightness(95%)!important}
+#idButtonBuyFC_1{position:relative;left:-38px;box-shadow:none;background-color:#fff;border-top:0;display:flex;flex-direction:row;flex-shrink:0}
+#DivShowCartOnPage{left:350px!important;margin-top:-400px!important;display:block!important}
+#idTDTitShowCartOnPageFC div{line-height:15px!important}
+#idButtonBuyFC_1{display:initial!important}
+.ProdWL{margin:0!important;position:relative;left:-35px;display:none}
+.FCGridMain{display:flex;flex-direction:column}
+.det-product-container9 #idButtonBuyFC_1{left:0!important}
+#videoGridLink{display:none}
+.selectors{float:left}
+.ProdWLSel {margin:0 0 0 5px;float:left;}
+@media only screen and (max-width:479px){
+  .det-product-img-name-container-full9 {width:100%;}	
+  .det-product-img-name-container-one9 {width:100%;}
+  .det-product-img-name-container-two9 {width:100%;padding:15px 0;}
+  .selectors {float: initial;}
+}
+</style>
+</ProdTop>
+
+<prodList><!-- Prod List --></prodList>
+
+<ProdDet>
+<div class="det-product-container9">
+  <div class="det-product-img-name-container9">
+    <div class="det-product-img-name-container-full9">
+      <div class="det-product-img-name-container-one9 zoom-gallery image-zoom-size" id="idDivGridImg"></div> 
+    </div>
+    <div class="det-product-img-name-container-two9 det-product-img-name-container-two9-wl font-regular">
+      <div><h1 id="idNameProductGridFC"><prodNameEnc></h1></div>
+      <div class="DivProductDet-sku">
+        SKU: <small id="idCodProdGrid"><prodRef></small>
+        <script type="text/javascript">
+          iQtdOp=<prodReviewsQty>.0;
+          if(iQtdOp==0){document.write("<a href='"+ FCLib$.uk("url-product-review") +"<prodId>'><div class='ProductStyleReviewOffBoxFC'><div class='NotaOpiniaoVazio NotaOpiniaoVazio1'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio2'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio3'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio4'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio5'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio6'></div></div></a>")}
+          else {document.write("<a href='"+ FCLib$.uk("url-product-review") +"<prodId>'><div class='ProductStyleReviewOnBoxFC'><div class='ProductStyleReviewStarsOnFC'><prodAverageReviews></div></a><div class='ProductStyleReviewQtyOnFC'>(<a href='#OP' style='text-decoration:none;'><prodReviewsQty></a>)</div></div>")}
+        </script>
+      </div>
+      <div class="det-product-filters"><ProdFilters></div>
+      <div>
+        <p class="prod-price" id="idPriceGridFC<prodId>">
+          <prodPriceSimple>
+        </p>
+        <script>
+          FCLib$.onReady(function(){
+            var e=document.getElementById("idPriceGridFC<prodId>");
+            if(e)e.innerHTML += fnMaxInstallmentsGrid(<prodPriceNum>,<prodMaxInstallmentNum>) + fnShowEconomyGrid(<prodPriceNum>,<prodPriceOri>);
+          });
+        </script>
+      </div>
+      <p id="idPriceAVista">
+        <script>FCLib$.onReady(function(){sF$.fnMostraDescontoProdDet(<prodPriceNum>);});</script>
+      </p>
+      <div class="FCGridMain" id="idMainGridFC_<prodId>"></div>
+    </div>
+  </div>
+</div>
+<div class="det-product-buytogether-container9 font-regular" style="display:none!important;">
+  <div class="det-product-buytogether9 font-regular">
+    <BuyTogether>
+  </div>
+</div>
+<div class="det-product-img-name-container-two det-product-fixed-remove"></div>
+
+<script>
+FCLib$.onReady(function(){
+  sF$.fnCustomizeIconsSocialNetworks(true);
+  fnShowCEP(<prodId>);
+  fnShowCEPGrid(<prodId>); /*FC simulação de frete */
+  sF$.fnFixedGridProductPage();
+});
+</script>
+
+<script>
+var GridLib_<IDProduto>$=(function(){
+  var oProdTags={
+    ImagemProdDet:("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"),
+    ImagemProdAmp:("<prodImgAmp>"==""?("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"):"<prodImgAmp>"),
+    CorVal:"<colorVal>",
+    CorRGB:"<colorRGB>",
+    IDProduto:<prodId>,
+    CodProd:"<prodRef>",
+    Estoque:(""=="<prodStock>"?99999999:0<prodStock>),
+    PesoNum:"<weightNum>",
+    PrecoOri:"<prodPriceOri>",
+    PrecoNum:"<prodPriceNum>",
+    MaxParcelasProdNum:<prodMaxInstallmentNum>,
+    Adicional1Val:"<desc1Val>",
+    Adicional2Val:"<desc2Val>",
+    Adicional3Val:"<desc3Val>",
+    AdicionalD1Val:"<descD1Val>",
+    AdicionalD2Val:"<descD2Val>",
+    AdicionalD3Val:"<descD3Val>",
+    NomeAdicional1:"<descName1>",
+    NomeAdicional2:"<descName2>",
+    NomeAdicional3:"<descName3>",
+    NomeAdicionalD1:"<descD1Name>",
+    NomeAdicionalD2:"<descD2Name>",
+    NomeAdicionalD3:"<descD3Name>"
+  };
+
+  var aSubProdTags=[];
+  <sub>
+    aSubProdTags.push({
+      ImagemProdDet:("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"),
+      ImagemProdAmp:("<prodImgAmp>"==""?("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"):"<prodImgAmp>"),
+      CorVal:"<colorVal>",
+      CorRGB:"<colorRGB>",
+      IDProduto:<prodId>,
+      CodProd:"<prodRef>",
+      Estoque:(""=="<prodStock>"?99999999:0<prodStock>),
+      PesoNum:"<weightNum>",
+      PrecoOri:"<prodPriceOri>",
+      PrecoNum:"<prodPriceNum>",
+      MaxParcelasProdNum:<prodMaxInstallmentNum>,
+      Adicional1Val:"<desc1Val>",
+      Adicional2Val:"<desc2Val>",
+      Adicional3Val:"<desc3Val>",
+      AdicionalD1Val:"<descD1Val>",
+      AdicionalD2Val:"<descD2Val>",
+      AdicionalD3Val:"<descD3Val>"
+    });
+  </sub>
+  if(aSubProdTags.length==0)FCGrid$.fnGridAll(oProdTags,aSubProdTags);
+  else FCLib$.onReady(function(){FCGrid$.fnGridAll(oProdTags,aSubProdTags);}); 
+})();
+</script>
+<!-- End: JS scripts grid -->
+</ProdDet>
+
+<ProdAmp><!-- Prod Amp --></ProdAmp>
+<ProdBottom><script>sF$.fnLinkDisp();</script></ProdBottom>
