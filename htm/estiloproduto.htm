@@ -1,0 +1,441 @@
+<!-- estiloproduto.htm : Grid v2 2021 (Store 3) -->
+<ProdTop>
+<script src='<PathTo file="htm/js/smartmodal-min.js">'></script>
+<link href="<PathTo file="htm/css/fc_grid_v1.css">" rel="stylesheet" type="text/css">
+<script src="<PathTo file="htm/js/fc_grid_v1.js">"></script>
+<script>var IsFramePage=false;</script>
+
+<!-- Script Filters -->
+<script>
+iQtdProds=<QtProd>;
+FCLib$.onReady(function(){
+  if(iQtdProds=="1"){
+    var sPages=sF$.fnGetID("idPageCountFC");
+    if(sPages)sPages.style.display="none";
+  }
+});
+OffsetAutoPagFC=290;
+var bTemSub=false;
+</script>
+
+<!-- Template for product quantity in cart -->
+<textarea id=cartQuantityTemplate style=display:none>
+  <div id="dynCartAdd<prodId>" class="dynCartAdd hidethis" onclick="dynCart$.changeQty(<prodId>,1)"><dynCartAdd></div>
+  <div id="dynCartQtyPanel<prodId>" class="dynCartQtyPanel hidethis">
+    <svg class=dynCartQtyDel viewBox="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,false)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-10v-2h10v2z"/></svg>
+    <input type=number id="dynCartQty<prodId>" prodid="<prodId>" value="<cartprodqty>" oriValue="<cartprodqty>" maxlength=2 oninput="this.value=this.value.replace(/[^\d+]/,'').substring(0,3)" onkeyup="delayExec(function(){dynCart$.inputQty(<prodId>);},1000)">
+    <svg class=dynCartQtyAdd viewBox="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,true)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-4v4h-2v-4h-4v-2h4v-4h2v4h4v2z"/></svg>
+  </div>
+  <div id="dynCartDone<prodId>" class="dynCartDone hidethis"><div class="skeleton-item"><a onclick="Cart$.fnShowCartCheckout();"><dynCartDone></a></div></div>
+</textarea>
+
+<div id="idDivPath">
+  <div id="idFiltersFC" style="display:none;">
+    <div id="idListaProdAdicional1FC">
+      <div class="EstTitQts"><descName1></div>
+      <ListAdic1Qt>
+    </div>
+    <div id="idListaProdAdicional2FC">
+      <div class="EstTitQts"><descName2></div>
+      <ListAdic2Qt>
+    </div>
+    <div id="idListaProdAdicional3FC">
+      <div class="EstTitQts"><descName3></div>
+      <ListAdic3Qt>
+    </div>
+  </div>
+</div>
+
+<div id="filter-offcanvas-overlay" onclick="filterCloseNav();"></div>
+<div id="filterSidenav" class="filter-sidenav font-regular">
+  <div class="closebtn" onclick="filterCloseNav();"><img alt="Close" id="list-filters-close" src="<PathTo file="images/icon-menu-close-filter.svg">" loading="lazy" width="35" height="35"></div>
+  <div id="ProductsFilterFCMobile" data-include-css="false"></div>
+</div>
+
+<div id="idMobileFilters">
+  <div class="fc-mobile-filters-left" id="fc-mobile-dynamic-filter">
+    <div onclick="filterOpenNav();"><b><var key="list-filters-title"></var></b></div>
+  </div>
+  <div class="fc-mobile-filters-right">
+    <div id="idPagProdTop"></div>
+    <div class="grid-list-toggle"></div>
+  </div>
+</div>
+</ProdTop>
+
+<ProdList>
+<!-- Prod List -->
+<div class="prodBox">
+  <FormProd>
+    <div class="DivListProd loading-skeleton list-prod-container" <DataAttribute> id="DivProd<prodId>">
+      <div class="prodlist-details-wishlist-container">
+        <div class="ProductList-wishlist"><wishlist></div>
+      </div>
+      <div class="DivProductListProd">
+        <div class="DivProductListImagemProd skeleton-item" id="DivImagemProdDouble<prodId>" onclick="fcSpy$.openSmartModal('<URLProd>');"></div>
+        <div class="prod-list-container-grid-view">
+          <div class="DivProductListNomeProd skeleton-item" id="DivProductListNomeProd<prodId>" onclick="fcSpy$.openSmartModal('<URLProd>');">
+            <span class="ProductListNomeProd text-overflow font-regular"><prodNameEnc></span>
+          </div>
+          <div class="DivProductListPriceProd skeleton-item" id="DivProductListPriceProd<prodId>" style="white-space:nowrap;" onclick="fcSpy$.openSmartModal('<URLProd>');">
+            <div id="idProdPrice<prodId>"></div> 
+            <div class="PriceAVistaLista" id="ProdDesc<prodId>"></div>
+          </div>
+        </div>
+        <div class="prodlist-spy-details-container skeleton-item">
+          <div class="dynCartDisabled dynCartQty hidethis"><div class=dynCartAdd onclick="fcSpy$.openSmartModal('<URLProd>');"><dynCartDisabled></div></div>
+          <div id="dynCartContainer<prodId>" class=dynCartQty dyn-cart-qty="<prodId>" dyn-cart-stock="0<prodStock>" dyn-cart-a1="<desc1Val>" dyn-cart-a2="<desc2Val>" dyn-cart-a3="<desc3Val>" dyn-cart-d1="<descD1Val>" dyn-cart-d2="<descD2Val>" dyn-cart-d3="<descD3Val>" dyn-cart-color="<colorVal>" dyn-cart-price="<prodPriceNum>"></div>
+        </div>
+      </div>
+      <div id="zFProdSoldOut<prodId>"></div>
+      <script>IDProdutoPai=<prodId>;var iEstoqueSubs=0;var bTemSubs=false;</script>
+      <sub>
+        <script>iEstoqueSubs=iEstoqueSubs+0<prodStock>;bTemSubs=true;</script>
+      </sub>
+    </div>
+  </FormProd>
+  <script>
+  sF$.fnProd("<prodImgMain>",("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"),"<URLProd>",<prodId>,"<prodNameFU>",<prodPriceNum>,<prodPriceOri>,"<prodRef>",<prodMaxInstallmentNum>,<prodStock>);
+
+  /*remove image link*/
+  function removeImgLink(){
+    document.getElementById("DivImagemProdDouble<IDProduto>").addEventListener("click", function(event){
+      event.preventDefault()
+    });
+  }
+  if( !sF$.fniOSversion() && !sF$.fnMacOsSafariversion() ){
+    removeImgLink();
+  } else if (sF$.fniOSversion() && sF$.fniOSversion()[0]>=13){
+    removeImgLink();
+  } else if(sF$.fnMacOsSafariversion() && sF$.fnMacOsSafariversion()[0]>13){
+    removeImgLink();
+  }
+  /*END-remove image link*/
+  /*remove spy2 from iOS<13*/
+  if( (sF$.fniOSversion() && sF$.fniOSversion()[0]<13) || (sF$.fnMacOsSafariversion() && sF$.fnMacOsSafariversion()[0]<13) ){
+    sF$.fnRemoveSpy2From("DivImagemProdDouble<prodId>","<URLProd>");
+    sF$.fnRemoveSpy2From("DivProductListNomeProd<prodId>","<URLProd>");
+    sF$.fnRemoveSpy2From("DivProductListPriceProd<prodId>","<URLProd>");
+    sF$.fnRemoveSpy2From("DivProdListDetails","<URLProd>");
+  }  
+  /*END - remove spy2 from iOS<13*/
+
+  </script>
+</div>
+</ProdList>
+
+<ProdDet>
+<!-- Prod Det -->
+<link rel="stylesheet" type="text/css" href="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.css" />
+<script type="text/javascript" src="/js/MagicToolbox/MagicZoomPlusV3/magiczoomplus.js"></script>
+
+<div class="det-product-container">
+  <div id="idBreadcrumb" class="font-regular">
+    <ul>
+      <li><a href="<url-categories>" class="ProductStyleBreadCrumblinkFC"><var key="details-departments-title"></var></a></li>
+      <li><PathCat></li>
+    </ul>
+  </div>
+
+  <br>
+  <div class="det-product-img-name-container-new">
+      <div class="det-product-img-name-container-full-new">
+      <div class="det-product-release"><prodRelease></div>
+      <div><h1 id="idNameProductGridFC"><prodNameEnc></h1></div>
+      <div class="det-product-sky-review">
+      	<div class="DivProductDet-sku">SKU: <small id="idCodProdGrid"><prodRef></small></div>
+      	<div class="det-product-show-product-review-icons DivProductDet-review"></div>
+        <script type="text/javascript">
+          iQtdOp=<prodReviewsQty>.0;
+          var showQtdReviewStars = document.querySelectorAll(".det-product-show-product-review-icons");
+          for (i = 0; i < showQtdReviewStars.length; i++) {
+            if(iQtdOp==0){showQtdReviewStars[i].innerHTML = "<a href='<url-product-review><prodId>' aria-label='review'><div class='ProductStyleReviewOffBoxFC'><div class='NotaOpiniaoVazio NotaOpiniaoVazio1'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio2'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio3'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio4'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio5'></div><div class='NotaOpiniaoVazio NotaOpiniaoVazio6'></div></div></a>";}
+            else{showQtdReviewStars[i].innerHTML = "<a href='<url-product-review><prodId>' aria-label='review'><div class='ProductStyleReviewOnBoxFC'><div class='ProductStyleReviewStarsOnFC'><prodAverageReviews></div></a><div class='ProductStyleReviewQtyOnFC'>(<a href='#OP' style='text-decoration:none;'><prodReviewsQty></a>)</div></div>";}
+          } 
+        </script>
+      </div>
+      <div class="det-product-img-name-container-one zoom-gallery image-zoom-size" id="idDivGridImg"></div>
+      <div class="det-product-filters"><ProdFilters></div>
+    </div>
+
+    <div class="det-product-img-name-container-two-new">
+      <!-- Stock -->
+      <div class="product-details-show-stock-container">
+        <div id="product-details-show-stock"></div>
+          <script type="text/javascript">
+          FCLib$.onReady(function(){
+            var sStockProduct=<prodStock>.0;
+            fnGetStockProduct(sStockProduct);});
+          </script>
+      </div>
+      <!-- Date prom -->
+      <div class="product-details-data-prom">
+        <div id="DataProm"></div>
+        <script type="text/javascript">
+        var sDateTime="<DataPromFim>";
+        FCLib$.onReady(function(){fnShowDateProm(sDateTime);});
+        </script>
+      </div>
+      <div>
+        <p class="prod-price" id="idPriceGridFC<prodId>">
+          <prodPriceSimple>
+        </p>
+        <script>
+          FCLib$.onReady(function(){
+            var e=document.getElementById("idPriceGridFC<prodId>");
+            if(e)e.innerHTML += fnMaxInstallmentsGrid(<prodPriceNum>,<prodMaxInstallmentNum>) + fnShowEconomyGrid(<prodPriceNum>,<prodPriceOri>);
+          });
+        </script>
+      </div>
+      <p id="idPriceAVista">
+        <script>FCLib$.onReady(function(){sF$.fnMostraDescontoProdDet(<prodPriceNum>);});</script>
+      </p>
+      <div id="product-details-dyncart-container">
+        <div id="dynCartContainer<prodId>" class=dynCartQty dyn-cart-qty="<prodId>" dyn-cart-stock="0<prodStock>" dyn-cart-a1="<desc1Val>" dyn-cart-a2="<desc2Val>" dyn-cart-a3="<desc3Val>" dyn-cart-d1="<descD1Val>" dyn-cart-d2="<descD2Val>" dyn-cart-d3="<descD3Val>" dyn-cart-color="<colorVal>" dyn-cart-price="<prodPriceNum>"></div>
+      </div>
+      <div class="FCGridMain" id="idMainGridFC_<prodId>"></div>
+      <div class="FreightContainerFC" id="det-zipcode-container">
+        <div id="ShowCEP<prodId>"></div>
+      </div>
+    </div> <!-- fim det-product-img-name-container-two-new -->
+
+      <div>
+        <div id='buttonBoxShareMob' onclick='shareBoxOpenClose();' ><img src="<storePath>images/ic_share.svg" alt="Share" width="35px;" align="absmiddle"><var key="product-share-this-product"></var></div>
+        <div id="shareBlackBG" style="-webkit-transform: translateY(100%);display: none;" onclick='shareBoxOpenClose();'></div>
+        <div id='boxShareMob' style="-webkit-transform: translateY(100%);">
+          <div class="shareClose" align="right" onclick='shareBoxOpenClose();'><img src="<storePath>images/close.svg" alt="Close" width="35px;"></div>
+          <div class="shareMobItens" id="IconesRedesSociais_Rodape">
+            <span class="shareTitleBox"><var key="product-share-this-product-with-friends"></var></span>
+            <div><ShareFacebook></div>
+            <div><ShareTwitter></div>
+            <a href="whatsapp://send?text='<prodNameEnc>'. Link: http://lvfc.co/l<storeId>/p<prodId>" target="_blank"><div><img src="<storePath>images/ic_whatsapp.svg" alt="WhatsApp">WhatsApp</div></a>
+            <div><SharePinterest></div>
+          </div>
+        </div>
+        <script>
+          function shareBoxOpenClose(){
+            var getBoxShare = document.getElementById('boxShareMob');
+            var getBGBoxShare = document.getElementById('shareBlackBG');
+            if(getBoxShare && getBGBoxShare){
+              if(getBoxShare.style.transform=='translateY(100%)' && getBGBoxShare.style.transform=='translateY(100%)'){
+                getBoxShare.style='-webkit-transform: translateY(0);';
+                getBGBoxShare.style='-webkit-transform: translateY(0);opacity: 0.5;';       
+                document.getElementsByTagName("BODY")[0].style.overflow = "hidden";
+                /*window.top.document.querySelector('.FCCloseBack').style.display='none';*/
+              } else{
+                getBoxShare.style='-webkit-transform: translateY(100%);';
+                getBGBoxShare.style='-webkit-transform: translateY(100%);opacity: 0;';
+                document.getElementsByTagName("BODY")[0].removeAttribute("style");
+                /*window.top.document.querySelector('.FCCloseBack').removeAttribute('style');*/
+              }
+            }
+          }
+          var sRodapeContent=document.getElementById("IconesRedesSociais_Rodape");
+          if(sRodapeContent)var aImgsShare=sRodapeContent.getElementsByTagName('img');
+          if(aImgsShare){
+            for(var i=0;i<aImgsShare.length;i++){
+              if(aImgsShare[i].className=='EstImgShareFacebook'){
+               aImgsShare[i].setAttribute('data-src',FC$.PathPrd +'share_icons/ic_facebook.svg');
+               aImgsShare[i].src=FC$.PathPrd +'share_icons/ic_facebook.svg';
+               aImgsShare[i].parentNode.innerHTML+='Facebook';
+             }
+              if(aImgsShare[i].className=='EstImgShareTwitter'){
+               aImgsShare[i].setAttribute('data-src',FC$.PathPrd +'share_icons/ic_twitter.svg');
+               aImgsShare[i].src=FC$.PathPrd +'share_icons/ic_twitter.svg';
+               aImgsShare[i].parentNode.innerHTML+='Twitter';
+             }
+              if(aImgsShare[i].className=='EstImgSharePinterest'){
+               aImgsShare[i].setAttribute('data-src',FC$.PathPrd +'share_icons/ic_pinterest.svg');
+               aImgsShare[i].src=FC$.PathPrd +'share_icons/ic_pinterest.svg';
+               aImgsShare[i].parentNode.innerHTML+='Pinterest';
+             }
+            }
+          }
+        </script>
+      </div>
+
+
+
+  </div>
+
+</div>
+
+<div class="det-product-description-container-full">
+<div class="det-product-description-container">
+  <input id="det-product-tab1" type="radio" name="tabs" checked>
+  <label id="det-product-tab1-label" for="det-product-tab1" class="font-bold"><h2><var key="details-description-title"></var></h2></label>
+  <input id="det-product-tab2" type="radio" name="tabs">
+  <label id="det-product-tab2-label" for="det-product-tab2" class="font-bold product-details-review"><div class="details-reviews-tab-quantity"><h2><var key="details-reviews-title"></var></h2><span>(<prodReviewsQty>)</span></div></label>
+  <div id="det-product-description-tab" class="font-regular">
+    <div class="ProductStyleBoxDescriptionFC">
+      <prodDescription>
+    </div>
+    <div class="ProductStyleBoxDescriptionFC">
+       <DescrHTM>
+    </div>
+    <div class="ProductStyleBoxDescriptionFC">
+       <DescrURL>
+    </div>
+    <div class="ProductStyleBoxDescriptionFC">
+       <BarCode>
+    </div>
+  </div>
+  <div id="det-product-review-tab">
+    <div class="det-product-reviews">
+      <Comments>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="det-product-fixed-remove" id="det-product-fixed-remove"></div>
+<div class="det-product-buytogether-container font-regular">
+  <div class="det-product-buytogether font-regular">
+    <BuyTogether>
+  </div>
+</div>
+<div class="CrossSellingFC font-regular">
+ <CrossSelling>
+ <script>sF$.fnInsertDynCarouselCrossSelling();</script>
+</div>
+
+<!-- Javascript ZipCode - Description CrossSelling -->
+<script>
+FCLib$.onReady(function(){
+  sF$.fnCustomizeIconsSocialNetworks(true);
+  fnShowCEP(<prodId>);
+  fnShowCEPGrid(<prodId>); /*FC simulação de frete */
+});
+FCGrid$.showVideoGrid("<CodVideoProd>");
+if(!<prodAvailable>)sF$.fnHideProdAvailable();
+</script>
+
+<script>
+var GridLib_<prodId>$=(function(){
+  var oProdTags={
+    ImagemProdDet:("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"),
+    ImagemProdAmp:("<prodImgAmp>"==""?("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"):"<prodImgAmp>"),
+    CorVal:"<colorVal>",
+    CorRGB:"<colorRGB>",
+    IDProduto:<prodId>,
+    CodProd:"<prodRef>",
+    Estoque:(""=="<prodStock>"?99999999:0<prodStock>),
+    PesoNum:"<weightNum>",
+    PrecoOri:"<prodPriceOri>",
+    PrecoNum:"<prodPriceNum>",
+    MaxParcelasProdNum:<prodMaxInstallmentNum>,
+    ProdName:"<prodNameEnc>",
+    ProdCategory:"<catNameEnc>",
+    Adicional1Val:"<desc1Val>",
+    Adicional2Val:"<desc2Val>",
+    Adicional3Val:"<desc3Val>",
+    AdicionalD1Val:"<descD1Val>",
+    AdicionalD2Val:"<descD2Val>",
+    AdicionalD3Val:"<descD3Val>",
+    NomeAdicional1:"<descName1>",
+    NomeAdicional2:"<descName2>",
+    NomeAdicional3:"<descName3>",
+    NomeAdicionalD1:"<descD1Name>",
+    NomeAdicionalD2:"<descD2Name>",
+    NomeAdicionalD3:"<descD3Name>"
+  };
+
+  var aSubProdTags=[];
+  <sub>
+    aSubProdTags.push({
+      ImagemProdDet:("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"),
+      ImagemProdAmp:("<prodImgAmp>"==""?("<prodImgDet>"==""?"<prodImgMain>":"<prodImgDet>"):"<prodImgAmp>"),
+      CorVal:"<colorVal>",
+      CorRGB:"<colorRGB>",
+      IDProduto:<prodId>,
+      CodProd:"<prodRef>",
+      Estoque:(""=="<prodStock>"?99999999:0<prodStock>),
+      PesoNum:"<weightNum>",
+      PrecoOri:"<prodPriceOri>",
+      PrecoNum:"<prodPriceNum>",
+      MaxParcelasProdNum:<prodMaxInstallmentNum>,
+      ProdName:"<prodNameEnc>",
+      ProdCategory:"<catNameEnc>",
+      Adicional1Val:"<desc1Val>",
+      Adicional2Val:"<desc2Val>",
+      Adicional3Val:"<desc3Val>",
+      AdicionalD1Val:"<descD1Val>",
+      AdicionalD2Val:"<descD2Val>",
+      AdicionalD3Val:"<descD3Val>"
+    });
+  </sub>
+  if(aSubProdTags.length==0)FCGrid$.fnGridAll(oProdTags,aSubProdTags);
+  else FCLib$.onReady(function(){FCGrid$.fnGridAll(oProdTags,aSubProdTags);}); 
+})();
+</script>
+<!-- End: JS scripts grid -->
+</ProdDet>
+
+<ProdAmp><!-- Prod Amp --></ProdAmp>
+<ProdBottom>
+<script>
+FCLib$.onLoaded(function(){skeletonLib$.removeClass("loading-skeleton",document);});
+
+function FuncAutoPagPreload(iPagProdFC){
+  skeletonLib$.showSkeleton(iPagProdFC);
+  fixDIVsSizes();
+}
+
+function FuncAutoPagPostload(sHTMLPage,iPagProdFC){
+  return skeletonLib$.removeSlideIn(sHTMLPage);
+}
+
+function FuncAutoPagStart(){
+  sF$.fnShowingProdsQty(false);
+}
+
+function FuncAutoPagEnd(){
+  if(iPagProdFC==iPagCountFC)sF$.fnShowingProdsQty(true);
+  dynCart$.updateQty();
+  skeletonLib$.removeClass("loading-skeleton",document);
+  fixDIVsSizes();
+}
+
+/* Limit filters options view */
+if(document.body.className=='FCProduct ProductList'){
+  var getAllFillItemsList,FillItemsListLimit,ulChildNodes,btShowMore,btShowMoreTxt;
+  FCLib$.onLoaded(function(){
+    getAllFillItemsList=Array.prototype.slice.call(document.querySelectorAll(".FilItemsList"));
+    FillItemsListLimit=7;
+    getAllFillItemsList.forEach(function(itemUL,idUL){
+      if(getAllFillItemsList[idUL].childElementCount>FillItemsListLimit){
+        ulChildNodes=Array.prototype.slice.call(getAllFillItemsList[idUL].childNodes);
+        ulChildNodes.forEach(function(item,id){
+            if(id>FillItemsListLimit-1)item.style.display="none";
+        });
+        btShowMore=document.createElement("div");
+        btShowMoreTxt=document.createTextNode(rk("prod-list-filter-button-show-more"));
+        btShowMore.appendChild(btShowMoreTxt);
+        btShowMore.setAttribute('id','btShowMore'+idUL);
+        btShowMore.setAttribute('class','button-ShowMore');
+        btShowMore.setAttribute('onclick','showAllFilters(getAllFillItemsList['+idUL+'].childNodes,'+btShowMore.id+')');
+        itemUL.appendChild(btShowMore);
+      }
+    });
+  });
+  function showAllFilters(ulIDchildrens,btToChange){
+    if(btToChange.textContent==rk("prod-list-filter-button-show-more")){
+      ulIDchildrens.forEach(function(item){
+          item.removeAttribute('style');
+      });
+      btToChange.textContent=rk("prod-list-filter-button-show-less");
+      btToChange.setAttribute('class','button-ShowLess');
+    } else if(btToChange.textContent==rk("prod-list-filter-button-show-less")){
+      ulIDchildrens.forEach(function(item,id){
+        if(id>FillItemsListLimit-1)item.style.display="none";
+      });
+      btToChange.textContent=rk("prod-list-filter-button-show-more");
+      btToChange.removeAttribute('style');
+      btToChange.removeAttribute('class','button-ShowLess');
+      btToChange.setAttribute('class','button-ShowMore');
+    }
+  }
+};
+</script>
+</ProdBottom>
+<!-- estiloproduto.htm : Grid v2 2021  (Store 3) -->
