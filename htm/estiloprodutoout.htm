@@ -1,0 +1,73 @@
+<p254>
+<div class="DivHomeProd loading-skeleton DivHotSiteProd smoothShow home-container-products-child" <DataAttribute> id="DivProd<prodId>">
+  <div class="home-details-wishlist-container">
+    <div class="DivHome-wishlist"><wishlist></div>
+  </div>
+  <div class="DivHomeImagemProd skeleton-item" id="DivImagemProdDouble<prodId>" onclick="fcSpy$.openSmartModal('<URLProd>');"></div>
+  <div class="DivHomeNomeProd skeleton-item" id="DivHomeNomeProd<prodId>" onclick="NoCascate('<URLProd>');">
+    <span class="HomeNomeProd text-overflow font-regular"><prodName></span>
+  </div>
+  <div class="DivHomePriceProd skeleton-item" id="DivHomePriceProd<prodId>" style="white-space:nowrap;" onclick="fcSpy$.openSmartModal('<URLProd>');">
+    <div id="idProdPrice<prodId>"></div> 
+    <div class="PriceAVistaLista" id="ProdDesc<prodId>"></div>
+  </div>
+  <div class="home-spy-details-container skeleton-item">
+    <div class="dynCartDisabled dynCartQty hidethis"><div class=dynCartAdd onclick="fcSpy$.openSmartModal('<URLProd>');"><dynCartDisabled></div></div>
+    <div id="dynCartContainer<prodId>" class=dynCartQty dyn-cart-qty="<prodId>" dyn-cart-stock="0<prodStock>" dyn-cart-a1="<desc1Val>" dyn-cart-a2="<desc2Val>" dyn-cart-a3="<desc3Val>" dyn-cart-d1="<descD1Val>" dyn-cart-d2="<descD2Val>" dyn-cart-d3="<descD3Val>" dyn-cart-color="<colorVal>" dyn-cart-price="<prodPriceNum>"></div>
+  </div>
+</div>
+<script>
+FCLib$.onReady(function(){
+sF$.fnProdOut("<prodImgMain>","<prodImgDet>","<URLProd>",<prodId>,"<prodNameFU>",<prodPriceNum>,<prodPriceOri>,"<prodRef>",<prodMaxInstallmentNum>)});
+LibHotSite$.aFiltersHotsite.push(<ProdFiltersJS>);
+LibHotSite$.oDicCat[<prodId>]="<catNameSimple>";
+</script>
+</p254>
+
+<p255>
+<div class="DivHomeProd loading-skeleton" <DataAttribute> id="DivProd<prodId>">
+  <div class="home-details-wishlist-container">
+    <div class="DivHome-wishlist"><wishlist></div>
+  </div>
+  <div class="DivHomeImagemProd skeleton-item" id="DivImagemProdDouble<prodId>" onclick="fcSpy$.openSmartModal('<URLProd>');return false;" tabIndex="0"></div>
+  <div class="DivHomeNomeProd skeleton-item" id="DivHomeNomeProd<prodId>" onclick="fcSpy$.openSmartModal('<URLProd>');" tabIndex="0">
+    <span class="HomeNomeProd text-overflow font-regular"><prodName></span>
+  </div>
+  <div class="DivHomePriceProd skeleton-item" id="DivHomePriceProd<prodId>" style="white-space:nowrap;" onclick="fcSpy$.openSmartModal('<URLProd>');" tabIndex="0">
+    <div id="idProdPrice<prodId>"></div> 
+    <div class="PriceAVistaLista" id="ProdDesc<prodId>"></div>
+  </div>
+  <div class="home-spy-details-container skeleton-item">
+    <div class="dynCartDisabled dynCartQty hidethis"><div class=dynCartAdd onclick="fcSpy$.openSmartModal('<URLProd>');"><dynCartDisabled></div></div>
+    <div id="dynCartContainer<prodId>" class=dynCartQty dyn-cart-qty="<prodId>" dyn-cart-stock="0<prodStock>" dyn-cart-a1="<desc1Val>" dyn-cart-a2="<desc2Val>" dyn-cart-a3="<desc3Val>" dyn-cart-d1="<descD1Val>" dyn-cart-d2="<descD2Val>" dyn-cart-d3="<descD3Val>" dyn-cart-color="<colorVal>" dyn-cart-price="<prodPriceNum>"></div>
+  </div>
+</div>
+<script>
+FCLib$.onReady(function(){
+  sF$.fnProdOut("<prodImgMain>","<prodImgDet>","<URLProd>",<prodId>,"<prodNameFU>",<prodPriceNum>,<prodPriceOri>,"<prodRef>",<prodMaxInstallmentNum>);
+
+  /*remove image link*/
+  function removeImgLink(){
+    document.getElementById("DivImagemProdDouble<IDProduto>").addEventListener("click", function(event){
+      event.preventDefault();
+    });
+  }
+  if( !sF$.fniOSversion() && !sF$.fnMacOsSafariversion() ){
+    removeImgLink();
+  } else if (sF$.fniOSversion() && sF$.fniOSversion()[0]>=13){
+    removeImgLink();
+  } else if(sF$.fnMacOsSafariversion() && sF$.fnMacOsSafariversion()[0]>13){
+    removeImgLink();
+  }
+  /*END-remove image link*/
+  /*remove spy2 from iOS<13*/
+  if( (sF$.fniOSversion() && sF$.fniOSversion()[0]<13) || (sF$.fnMacOsSafariversion() && sF$.fnMacOsSafariversion()[0]<13) ){
+    sF$.fnRemoveSpy2From("DivImagemProdDouble<prodId>","<URLProd>");
+    sF$.fnRemoveSpy2From("DivHomeNomeProd<prodId>","<URLProd>");
+    sF$.fnRemoveSpy2From("DivHomePriceProd<prodId>","<URLProd>");
+    sF$.fnRemoveSpy2From("DivHomeDetails","<URLProd>");
+  }  
+  /*END - remove spy2 from iOS<13*/
+});
+</script>
+</p255>
