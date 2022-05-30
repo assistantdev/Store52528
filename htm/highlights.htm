@@ -1,0 +1,186 @@
+<script src='<PathTo file="htm/js/smartmodal-min.js">'></script>
+<script src='<PathTo file="htm/js/hotsite-lib-min.js">'></script>
+
+<!-- Template for product quantity in cart -->
+<textarea id=cartQuantityTemplate style=display:none>
+  <div id="dynCartAdd<prodId>" class="dynCartAdd hidethis" onclick="dynCart$.changeQty(<prodId>,1)"><dynCartAdd></div>
+  <div id="dynCartQtyPanel<prodId>" class="dynCartQtyPanel hidethis">
+    <svg class=dynCartQtyDel viewBox="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,false)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-10v-2h10v2z"/></svg>
+    <input type=number id="dynCartQty<prodId>" prodid="<prodId>" value="<cartprodqty>" oriValue="<cartprodqty>" maxlength=2 oninput="this.value=this.value.replace(/[^\d+]/,'').substring(0,3)" onkeyup="delayExec(function(){dynCart$.inputQty(<prodId>);},1000)">
+    <svg class=dynCartQtyAdd viewBox="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,true)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-4v4h-2v-4h-4v-2h4v-4h2v4h4v2z"/></svg>
+  </div>
+  <div id="dynCartDone<prodId>" class="dynCartDone hidethis"><div class="skeleton-item"><a onclick="Cart$.fnShowCartCheckout();"><dynCartDone></a></div></div>
+</textarea>
+
+<style>
+/* Hotsite Filters */ 
+.HighlightsPage .left-bar{display:none}
+.HighlightsPage #filterSidenav{margin-left:15px;}
+.HighlightsPage #idFCContent{display:flex;flex-direction:row;max-width:1306px;margin:0 auto;}
+.HighlightsPage .EstListCat li a{font-size:16px;}
+.HighlightsPage #idMenuCat1{border-bottom:0}
+.HighlightsPage .home-price{color:#212121;font-size:18px;}
+.HighlightsPage .old-price{font-size:12px;color:#666;}
+.HighlightsPage .installments{clear:left;line-height:normal;margin-top:0;color:#333;font-size:12px;}
+.HighlightsPage .home-container-products{display:flex;flex-wrap:wrap;justify-content:flex-start;}
+.HighlightsPage .home-container-products-child{margin:10px 10px 20px 10px}
+.HighlightsPage .DivFiltrarPor{margin-bottom:100px!Important}
+
+.HighlightsPage #TabTitProd{height:fit-content}
+
+@media only screen and (max-width:1024px){
+  .HighlightsPage #filterSidenav{margin-left:0px;}
+  .HighlightsPage #ProductsFilterFC_Hotsite{margin-left:15px;}
+  .HighlightsPage #idFCContent{flex-direction:column;}
+  .HighlightsPage #idMobileFilters{display:flex;display:-webkit-flex;align-items:center;-webkit-align-items:center;justify-content:center;-webkit-justify-content:center;height:60px}
+  .HighlightsPage .fc-mobile-filters-left{background:#697680;color:#fff;text-align:center;margin:0 10px;padding:9px 0;border-radius:3px;cursor:pointer;position:relative;top:5px;}
+  .HighlightsPage #idPageCountFC{width:50%;text-align:right;padding-right:5px}
+  .HighlightsPage .home-price{font-size:16px!important;}
+  .HighlightsPage .DivHomeProd{height:360px;}
+  .HighlightsPage .home-container-products{width:97%}
+  .HighlightsPage .home-container-products-child{width:27.5%;}
+  .HighlightsPage .home-spy-details-container{flex-direction:column}
+  .home-main-container #HotSiteQtd {text-align:center;margin:0 auto 5px auto;}
+  .home-details-wishlist-container { }
+}
+
+@media only screen and (max-width:740px){
+.HighlightsPage .home-container-products{width:97%}
+.HighlightsPage .home-container-products-child{width:43%;}
+}
+
+@media only screen and (max-width:570px){
+.HighlightsPage .home-container-products{width:97%}
+.HighlightsPage .home-container-products-child{width:42%;}
+}
+
+@media only screen and (max-width:420px){
+.HighlightsPage .home-container-products{width:95%}
+.HighlightsPage .home-container-products-child{width:38%;margin:10px 6px 20px 6px;}
+.HighlightsPage .DivHomeProd{height:310px;}
+.HighlightsPage .home-price-breakline {display:block;}
+.DivHomeImagemProd {height: 95px;}
+.DivHomeImagemProd img{max-width:95px;max-height:95px;}
+}
+
+@media only screen and (max-width:380px){
+.HighlightsPage .home-container-products-child {width:35%;}
+.HighlightsPage .fc-badge-product-principal {position:absolute;top:1px;right:1px;transform:scale(0.8);}
+}
+
+@media only screen and (max-width:320px){
+.HighlightsPage .home-container-products {width:94%;}
+.HighlightsPage .home-container-products-child {width:33%;}
+}
+
+@media only screen and (min-width:1025px){
+  .HighlightsPage .fc-mobile-filters-left,.HighlightsPage .fc-mobile-filters-left div,.HighlightsPage #filterSidenav .closebtn{display:none}
+  .HighlightsPage .home-container-products{width:730px}
+  .HighlightsPage .home-container-products-child{width:25%;height:390px;}
+  .HighlightsPage .filter-sidenav{display:inline-table}
+}
+
+@media only screen and (min-width:1280px){
+.HighlightsPage .home-container-products{width:970px}
+.HighlightsPage .home-container-products-child{width:26%;}
+}
+
+@media only screen and (min-width:1366px){
+.HighlightsPage .home-container-products {width:1030px;}
+.HighlightsPage .home-container-products-child {width:28%}
+}
+
+@keyframes scaleToFull{
+  0% {transform:scale(.01);}
+  100% {transform:scale(1);position:relative;visibility:visible;}
+}
+
+@keyframes scaleToNone{
+  0% {transform:scale(1);}
+  30% {transform:scale(.01);visibility:hidden;}
+  100% {transform:scale(.01);position:absolute;visibility:hidden;}
+}
+
+.home-container-products .smoothShow:nth-of-type(4n+1){animation-delay:.1s;}
+.home-container-products .smoothShow:nth-of-type(4n+2){animation-delay:.15s;}
+.home-container-products .smoothShow:nth-of-type(4n+3){animation-delay:.2s;}
+.home-container-products .smoothShow:nth-of-type(4n+4){animation-delay:.25s;}
+
+.home-main-container #HotSiteQtd{margin-left:10px;}
+
+.home-container-products .smoothShow{
+  transform:scale(.01);
+  animation-name:scaleToFull;
+  animation-duration:.2s;
+  animation-timing-function:ease-out;
+  animation-fill-mode:forwards;
+}
+
+.home-container-products .smoothHide{
+  transform:scale(1);
+  animation:.5s ease-out .1s 1 scaleToNone forwards;
+}
+
+@media not all and (min-resolution:.001dpcm) { 
+  @media {
+    .home-container-products .smoothHide { 
+      position:absolute;
+    }
+  }
+}
+</style>
+
+<!-- Hotsite Filters -->
+<div id="filter-offcanvas-overlay" onclick="filterCloseNav();"></div>
+<div id="filterSidenav" class="filter-sidenav font-regular">
+  <div class="closebtn" onclick="filterCloseNav();"><img alt="Close" id="list-filters-close" src="<PathTo file="images/icon-menu-close-filter.svg">" loading="lazy" width="35" height="35"></div>
+  <div id="ProductsFilterFCMobile" data-include-css="false"></div>
+  <br>
+  <div id="ProductsFilterFC_Hotsite"></div>
+</div>
+<div id="idMobileFilters">
+  <div class="fc-mobile-filters-left" id="fc-mobile-dynamic-filter">
+    <div onclick="filterOpenNav();"><b><var key="list-filters-title"></var></b></div>
+  </div>
+  <div class="fc-mobile-filters-right">
+    <div id="idPagProdTop"></div>
+  </div>
+</div>
+
+<div class="home-main-container"  id="TabTitProd">
+  <div class="MainHomeBoxTitFC">
+    <h1 class="MainHomeBoxTitFC-line"><var key="featured-products-title"></var></h1>
+    <div id=HotSiteQtd></div> 
+  </div> 
+  <div class="home-container-products">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+    <prod out="p254" em="rand">
+  </div>
+</div>
+
+<script>
+LibHotSite$.fnInit();
+FCLib$.onLoaded(function(){skeletonLib$.removeClass("loading-skeleton",document);});
+</script>
