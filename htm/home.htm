@@ -7,13 +7,14 @@
   <div id="dynCartQtyPanel<prodId>" class="dynCartQtyPanel hidethis">
     <svg class=dynCartQtyDel viewBox="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,false)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-10v-2h10v2z"/></svg>
     <input type=number id="dynCartQty<prodId>" prodid="<prodId>" value="<cartprodqty>" oriValue="<cartprodqty>" maxlength=2 oninput="this.value=this.value.replace(/[^\d+]/,'').substring(0,3)" onkeyup="delayExec(function(){dynCart$.inputQty(<prodId>);},1000)">
-    <svg class=dynCartQtyAdd viewBox="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,true)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-4v4h-2v-4h-4v-2h4v-4h2v4h4v2z"/></svg>
+    <svg class=dynCartQtyAdd view
+    Box="0 0 24 24" onclick="dynCart$.stepQty(<prodId>,true)"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-4v4h-2v-4h-4v-2h4v-4h2v4h4v2z"/></svg>
   </div>
   <div id="dynCartDone<prodId>" class="dynCartDone hidethis"><div class="skeleton-item"><a onclick="Cart$.fnShowCartCheckout();"><dynCartDone></a></div></div>
 </textarea>
 
 <!-- Box1 Banner + Product Carousel -->
-<div class="home-main-container"  id="home-sales-section" style="display: none;">
+<!-- <div class="home-main-container"  id="home-sales-section" style="display: none;">
   <div class="MainHomeBoxTitFC">
     <h1 class="MainHomeBoxTitFC-line"><var key="home-title-sales"></var></h1>
   </div> 
@@ -33,10 +34,10 @@
       </div>  
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Box2 Banner + Product Carousel -->
-<div class="home-main-container"  id="home-release-section" style="display: none;">
+<!-- <div class="home-main-container"  id="home-release-section" style="display: none;">
   <div class="MainHomeBoxTitFC">
     <h2 class="MainHomeBoxTitFC-line"><var key="home-title-last-releases"></var></h2>
   </div> 
@@ -56,10 +57,10 @@
       </a>
     </div>
   </div>  
-</div>
+</div> -->
 
 <!-- Box3 Banner + Product Carousel -->
-<div class="home-main-container"  id="home-featured-section">
+<!-- <div class="home-main-container"  id="home-featured-section">
   <div class="MainHomeBoxTitFC">
     <h2 class="MainHomeBoxTitFC-line"><var key="home-title-featured-products"></var></h2>
   </div> 
@@ -79,7 +80,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="home-main-banner-middle" style="display:none;">
   <a href="<banner-redir 15>">
